@@ -54,8 +54,8 @@ namespace budgetHappens
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            HighLightSelectItem(ListBudgets);
+            if(CurrentSession.Budgets.Count > 0)
+                HighLightSelectItem(ListBudgets);
         }
 
         private void AddBudgetButton_Click_1(object sender, EventArgs e)
@@ -102,7 +102,6 @@ namespace budgetHappens
             }
             else
             {
-
                 StackPanelCurrent.Children.Remove(TextBlockDaysLeft);
                 StackPanelCurrent.Children.Remove(TextBlockBudgetName);
                 StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
