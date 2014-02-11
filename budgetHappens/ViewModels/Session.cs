@@ -1,4 +1,5 @@
-﻿using Microsoft.Phone.Shell;
+﻿using budgetHappens.Models;
+using Microsoft.Phone.Shell;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

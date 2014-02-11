@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace budgetHappens.ViewModels
+namespace budgetHappens.Models
 {
     public class Period
     {

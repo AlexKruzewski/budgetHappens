@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using budgetHappens.ViewModels;
+using budgetHappens.Models;
 
 namespace budgetHappens
 {

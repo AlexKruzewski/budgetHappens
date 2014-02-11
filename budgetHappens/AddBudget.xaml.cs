@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using budgetHappens.ViewModels;
 using budgetHappens.Repositories;
+using budgetHappens.Models;
 namespace budgetHappens
 {
     public partial class AddBudget : PhoneApplicationPage

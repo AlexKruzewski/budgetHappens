@@ -12,14 +12,13 @@ using budgetHappens.ViewModels;
 using System.Windows.Media;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using budgetHappens.Models;
 
 namespace budgetHappens
 {
     public partial class MainPage : PhoneApplicationPage
     {
         public static Session CurrentSession = null;
-        //public List<Withdrawal> Withdrawals;
-        // Constructor
         public MainPage()
         {
             InitializeComponent();
@@ -30,7 +29,6 @@ namespace budgetHappens
 
         void CurrentSession_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(e.PropertyName + " has changed");
             if (e.PropertyName == "CurrentBudget")
             {
                 setUpCurrentBudget();
