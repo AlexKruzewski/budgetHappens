@@ -14,7 +14,18 @@ namespace budgetHappens.ViewModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal PeriodAmount { get; set; }
-        public decimal CurrentAmount { get; set; }
+        public decimal CurrentAmount 
+        { 
+            get 
+            {
+                decimal tempAmount = PeriodAmount;
+                foreach (var withdrawal in Withdrawals)
+                {
+                    tempAmount -= withdrawal.Amount;
+                }
+                return tempAmount;
+            } 
+        }
         public ObservableCollection<Withdrawal> Withdrawals { get; set; }
 
         public Period(DayOfWeek startDay, decimal periodAmount, PeriodLength length)
@@ -47,17 +58,7 @@ namespace budgetHappens.ViewModels
                     break;
             }
             PeriodAmount = periodAmount;
-            CurrentAmount = periodAmount;
             Withdrawals = new ObservableCollection<Withdrawal>();
-        }
-
-        internal void RecalculateTotals()
-        {
-            CurrentAmount = PeriodAmount;
-            foreach (var withdrawal in Withdrawals)
-            {
-                CurrentAmount -= withdrawal.Amount;
-            }
         }
     }
 }

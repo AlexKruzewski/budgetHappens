@@ -52,7 +52,6 @@ namespace budgetHappens
             {
                 currentPeriod.Withdrawals.Add(new Withdrawal(amount, TextBoxDescription.Text, currentSession.CurrentBudget.Currency));
             }
-            currentPeriod.RecalculateTotals();
             currentSession.SaveSession();
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }

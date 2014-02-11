@@ -25,6 +25,7 @@ namespace budgetHappens
             InitializeComponent();
             if(CurrentSession == null)
                 CurrentSession = new Session();
+            Loaded += MainPage_Loaded;
         }
 
         void CurrentSession_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -49,6 +50,12 @@ namespace budgetHappens
             else
                 setUpCurrentBudget();
             SetupLists();
+        }
+
+        void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+            HighLightSelectItem(ListBudgets);
         }
 
         private void AddBudgetButton_Click_1(object sender, EventArgs e)
@@ -77,7 +84,6 @@ namespace budgetHappens
 
         private void setUpCurrentBudget()
         {
-            bool noBudgetSet = true;
             if (CurrentSession.CurrentBudget == null)
                 CurrentSession.CurrentBudget = CurrentSession.GetDefaultOrNextBudget();
 
@@ -93,10 +99,8 @@ namespace budgetHappens
                 TextBlockCurrentAmount.Text = CurrentSession.CurrentBudget.Currency + CurrentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
                 TextBlockPeriodAmount.Text = "of " + CurrentSession.CurrentBudget.Currency + CurrentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
                 TextBlockDaysLeft.Text = (CurrentSession.CurrentBudget.CurrentPeriod.EndDate.Day - DateTime.Now.Day).ToString() + " Days Left";
-                noBudgetSet = false;
             }
-
-            if (noBudgetSet)
+            else
             {
 
                 StackPanelCurrent.Children.Remove(TextBlockDaysLeft);
