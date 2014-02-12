@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 
 namespace budgetHappens.Repositories
 {
@@ -38,6 +40,23 @@ namespace budgetHappens.Repositories
             currencies.Add("£");
             currencies.Add("$");
             return currencies;
+        }
+
+        public static void GetItemsRecursive<T>(DependencyObject parents, ref List<T> objectList) where T : DependencyObject
+        {
+            var childrenCount = VisualTreeHelper.GetChildrenCount(parents);
+
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parents, i);
+                if (child is T)
+                {
+                    objectList.Add(child as T);
+                }
+                GetItemsRecursive<T>(child, ref objectList);
+            }
+
+            return;
         }
 
     }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using budgetHappens.Models;
+using budgetHappens.Repositories;
 
 namespace budgetHappens
 {
@@ -179,29 +180,10 @@ namespace budgetHappens
             ApplicationBar.MenuItems.Add(deleteCurrentBudgetButton);
         }
 
-
-
-        public static void GetItemsRecursive<T>(DependencyObject parents, ref List<T> objectList) where T : DependencyObject
-        {
-            var childrenCount = VisualTreeHelper.GetChildrenCount(parents);
-
-            for (int i = 0; i < childrenCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(parents, i);
-                if (child is T)
-                {
-                    objectList.Add(child as T);
-                }
-                GetItemsRecursive<T>(child, ref objectList);
-            }
-
-            return;
-        }
-
-        public static void HighLightSelectItem(LongListSelector selectedList)
+        public void HighLightSelectItem(LongListSelector selectedList)
         {
             List<UserControl> listItems = new List<UserControl>();
-            GetItemsRecursive<UserControl>(selectedList, ref listItems);
+            GeneralHelpers.GetItemsRecursive<UserControl>(selectedList, ref listItems);
 
             foreach (var item in listItems)
             {
