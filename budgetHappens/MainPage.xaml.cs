@@ -55,10 +55,6 @@ namespace budgetHappens
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            foreach (var s in currentSession.Budgets)
-            {
-                System.Diagnostics.Debug.WriteLine(s.ToString());
-            }
 
             if (currentSession.CurrentBudget != null)
                 currentSession.PropertyChanged += CurrentSession_PropertyChanged;
@@ -204,17 +200,13 @@ namespace budgetHappens
 
         public static void HighLightSelectItem(LongListSelector selectedList)
         {
-            System.Diagnostics.Debug.WriteLine("selected item: " + ((Budget)selectedList.SelectedItem).Name);
             List<UserControl> listItems = new List<UserControl>();
             GetItemsRecursive<UserControl>(selectedList, ref listItems);
 
             foreach (var item in listItems)
             {
                 if (selectedList.SelectedItem.Equals(item.DataContext))
-                {
-                    System.Diagnostics.Debug.WriteLine("found selected" + ((Budget)selectedList.SelectedItem).Name);
                     VisualStateManager.GoToState(item, "Selected", true);
-                }
                 else
                     VisualStateManager.GoToState(item, "Normal", true);
             }

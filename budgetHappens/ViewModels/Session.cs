@@ -114,7 +114,7 @@ namespace budgetHappens.ViewModels
         {
 
             var data = JsonConvert.SerializeObject(this.Budgets);
-            System.Diagnostics.Debug.WriteLine(data);
+           
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
             settings["Budgets"] = data;
             settings.Save();
