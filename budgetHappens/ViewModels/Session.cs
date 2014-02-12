@@ -16,7 +16,8 @@ namespace budgetHappens.ViewModels
 {
     public class Session
     {
-        private ObservableCollection<Budget> _budgets;
+        #region Parameters
+
         public ObservableCollection<Budget> Budgets
         {
             get
@@ -28,26 +29,48 @@ namespace budgetHappens.ViewModels
                 _budgets = value;
             }
         }
-        private Budget _currentBudget;
+
         public Budget CurrentBudget
         {
-            get{
+            get
+            {
                 return _currentBudget;
             }
-            set{
+            set
+            {
                 _currentBudget = value;
-                if(_currentBudget != null)
+                if (_currentBudget != null)
                     RaisePropertyChanged("CurrentBudget");
             }
         }
+
+        #endregion
+
+        #region Attributes
+
+        private ObservableCollection<Budget> _budgets;
+        private Budget _currentBudget;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Constructors
+
         public Session()
         {
             this.populateBudgets();
             this.CurrentBudget = this.GetDefaultOrNextBudget();
+
             PhoneApplicationService.Current.State["CurrentSession"] = this;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Event Handlers
+        #endregion
+
+        #region Methods
+
         protected void RaisePropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -68,15 +91,18 @@ namespace budgetHappens.ViewModels
         public Budget GetDefaultOrNextBudget()
         {
             Budget defaultBudget = null;
+
             if (Budgets.Count != 0)
             {
                 defaultBudget = (Budget)(from b in Budgets
                                          where b.Default == true
                                          select b).FirstOrDefault();
+
                 if (defaultBudget == null)
                 {
                     defaultBudget = this.Budgets[0];
                     defaultBudget.Default = (defaultBudget.Default) ? true : false;
+
                     this.SaveSession();
                 }
             }
@@ -92,6 +118,7 @@ namespace budgetHappens.ViewModels
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
             settings["Budgets"] = data;
             settings.Save();
+
             PhoneApplicationService.Current.State["CurrentSession"] = this;
         }
 
@@ -110,5 +137,8 @@ namespace budgetHappens.ViewModels
         {
             this.CurrentBudget = selectedBudget;
         }
+
+        #endregion
+
     }
 }

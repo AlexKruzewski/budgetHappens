@@ -14,32 +14,57 @@ namespace budgetHappens
 {
     public partial class AddBudget : PhoneApplicationPage
     {
+        #region Parameters
+        #endregion
+
+        #region Attributes
+        #endregion
+
+        #region Constructors
+
         public AddBudget()
         {
             InitializeComponent();
+
             ListPickerPeriod.ItemsSource = GeneralHelpers.GetNames<PeriodLength>();
             ListPickerCurrency.ItemsSource = GeneralHelpers.GetCurrencies();
             ListPickerStartDay.ItemsSource = GeneralHelpers.GetNames<DayOfWeek>();
         }
 
+        #endregion
+
+        #region Event Handlers
+
         private void ButtonSave_Click_1(object sender, RoutedEventArgs e)
         {
             Budget newBudget = new Budget();
+
             newBudget.Name = TextBoxName.Text;
             newBudget.AmountPerPeriod = decimal.Parse(TextBoxAmount.Text);
             newBudget.Currency = ListPickerCurrency.SelectedItem.ToString();
+
             PeriodLength periodLength = (PeriodLength)Enum.Parse(typeof(PeriodLength), ListPickerPeriod.SelectedItem.ToString());
             newBudget.PeriodLength = periodLength;
+
             newBudget.BudgetStartDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), ListPickerStartDay.SelectedIndex.ToString());
             newBudget.CurrentPeriod = new Period(newBudget.BudgetStartDay, newBudget.AmountPerPeriod, newBudget.PeriodLength);
+
             Session currentSession = (Session)PhoneApplicationService.Current.State["CurrentSession"];
+
             newBudget.Default = (currentSession.Budgets.Count() == 0) ? true : false;
             currentSession.Budgets.Add(newBudget);
             currentSession.CurrentBudget = newBudget;
+
             currentSession.SaveSession();
-           
+
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
 
         }
+
+        #endregion
+
+        #region Methods
+        #endregion
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using budgetHappens.Repositories;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,9 @@ namespace budgetHappens.Models
 {
     public class Budget
     {
-        public const string Key = "Budget";
+
+        #region Parameters
+
         public string Name { get; set; }
         public string Currency { get; set; }
         public DayOfWeek BudgetStartDay { get; set; }
@@ -21,6 +24,21 @@ namespace budgetHappens.Models
         public Period CurrentPeriod { get; set; }
         public bool Default { get; set; }
 
+        #endregion
+
+        #region Attributes
+
+        public const string Key = "Budget";
+        
+        #endregion
+
+        #region Constructors
+        #endregion
+
+        #region Event Handlers
+        #endregion
+
+        #region Methods
 
         internal bool IsPeriodValid()
         {
@@ -29,15 +47,12 @@ namespace budgetHappens.Models
 
         internal Period StartNewPeriod()
         {
-            Period newPeriod = new Period(this.BudgetStartDay,this.AmountPerPeriod,this.PeriodLength);
+            Period newPeriod = new Period(this.BudgetStartDay, this.AmountPerPeriod, this.PeriodLength);
             return newPeriod;
         }
+
+        #endregion
+
     }
 
-    public enum PeriodLength
-    { 
-        Weekly = 0,
-        Monthly = 1,
-        Yearly = 2
-    }
 }

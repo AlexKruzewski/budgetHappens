@@ -10,13 +10,15 @@ namespace budgetHappens.Models
 {
     public class Period
     {
-        public int Id { get; set; }
+        #region Parameters
+
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal PeriodAmount { get; set; }
-        public decimal CurrentAmount 
-        { 
-            get 
+
+        public decimal CurrentAmount
+        {
+            get
             {
                 decimal tempAmount = PeriodAmount;
                 foreach (var withdrawal in Withdrawals)
@@ -24,9 +26,17 @@ namespace budgetHappens.Models
                     tempAmount -= withdrawal.Amount;
                 }
                 return tempAmount;
-            } 
+            }
         }
+
         public ObservableCollection<Withdrawal> Withdrawals { get; set; }
+
+        #endregion
+
+        #region Attributes
+        #endregion
+
+        #region Constructors
 
         public Period(DayOfWeek startDay, decimal periodAmount, PeriodLength length)
         {
@@ -34,31 +44,29 @@ namespace budgetHappens.Models
             {
                 case PeriodLength.Weekly:
                     StartDate = GeneralHelpers.StartOfWeek(DateTime.Now, startDay);
-                    break;
-                case PeriodLength.Monthly:
-                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                    break;
-                case PeriodLength.Yearly:
-                    StartDate = new DateTime(DateTime.Now.Year, 1, 1);
-                    break;
-            }
-
-            switch (length)
-            {
-                case PeriodLength.Weekly:
                     EndDate = StartDate.AddDays(7);
                     break;
                 case PeriodLength.Monthly:
+                    StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                     EndDate = StartDate.AddMonths(1);
                     break;
                 case PeriodLength.Yearly:
+                    StartDate = new DateTime(DateTime.Now.Year, 1, 1);
                     EndDate = StartDate.AddYears(1);
                     break;
-                default:
-                    break;
             }
+
             PeriodAmount = periodAmount;
             Withdrawals = new ObservableCollection<Withdrawal>();
         }
+
+        #endregion
+
+        #region Event Handlers
+        #endregion
+
+        #region Methods
+        #endregion
+        
     }
 }
