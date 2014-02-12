@@ -47,8 +47,7 @@ namespace budgetHappens
             if (e.PropertyName == "CurrentBudget")
             {
                 SetUpCurrentBudget();
-
-                ListWithdrawals.ItemsSource = currentSession.CurrentBudget.CurrentPeriod.Withdrawals;
+                SetupLists();
 
                 HighLightSelectItem(ListBudgets);
             }
@@ -93,6 +92,8 @@ namespace budgetHappens
 
             if (currentSession.CurrentBudget == null)
                 SetUpCurrentBudget();
+
+            SetupLists();
         }
 
         private void ListBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -118,6 +119,7 @@ namespace budgetHappens
 
             if (currentSession.CurrentBudget != null)
             {
+
                 if (!currentSession.CurrentBudget.IsPeriodValid())
                 {
                     currentSession.CurrentBudget.CurrentPeriod = currentSession.CurrentBudget.StartNewPeriod();
@@ -130,9 +132,11 @@ namespace budgetHappens
                 TextBlockCurrentAmount.Text = currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
                 TextBlockPeriodAmount.Text = "of " + currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
                 TextBlockDaysLeft.Text = (currentSession.CurrentBudget.CurrentPeriod.EndDate.Day - DateTime.Now.Day).ToString() + " Days Left";
+
             }
             else
             {
+
                 StackPanelCurrent.Children.Remove(TextBlockDaysLeft);
                 StackPanelCurrent.Children.Remove(TextBlockBudgetName);
                 StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
@@ -150,6 +154,12 @@ namespace budgetHappens
         {
             ListBudgets.ItemsSource = currentSession.Budgets;
             ListBudgets.SelectedItem = currentSession.CurrentBudget;
+
+            if (currentSession.CurrentBudget != null)
+                ListWithdrawals.ItemsSource = currentSession.CurrentBudget.CurrentPeriod.Withdrawals;
+            else
+                ListWithdrawals.ItemsSource = new List<Withdrawal>();
+
         }
 
         private void BuildLocalizedApplicationBar()

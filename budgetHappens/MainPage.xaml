@@ -57,7 +57,9 @@
                 <!--Double line list no text wrapping-->
                 <phone:LongListSelector Name="ListWithdrawals" 
                                         Margin="0,0,-12,0" 
-                                        ItemsSource="{Binding Path=CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals, Mode=TwoWay}"
+                                        ItemsSource="{Binding 
+                                            Path=CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals, 
+                                            Mode=TwoWay}"
                                         SelectionChanged="ListWithdrawals_SelectionChanged_1">
                     <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
