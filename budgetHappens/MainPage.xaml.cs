@@ -78,6 +78,11 @@ namespace budgetHappens
 
         void AddWithdrawalButton_Click(object sender, EventArgs e)
         {
+            NavigationService.Navigate(new Uri("/QuickWithdraw.xaml", UriKind.Relative));
+        }
+
+        void addNewWithdrawalButton_Click(object sender, EventArgs e)
+        {
             NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml", UriKind.Relative));
         }
 
@@ -166,9 +171,13 @@ namespace budgetHappens
 
             // Create a new button and set the text value to the localized string from AppResources.
             ApplicationBarIconButton addWithdrawalButton = new ApplicationBarIconButton(new Uri("/Toolkit.Content/ApplicationBar.Add.png", UriKind.Relative));
-            addWithdrawalButton.Text = "Add Withdrawal";
+            addWithdrawalButton.Text = "Quick Withdraw";
             addWithdrawalButton.Click += AddWithdrawalButton_Click;
             ApplicationBar.Buttons.Add(addWithdrawalButton);
+
+            ApplicationBarMenuItem addNewWithdrawalButton = new ApplicationBarMenuItem("Add Withdrawal");
+            addNewWithdrawalButton.Click += addNewWithdrawalButton_Click;
+            ApplicationBar.MenuItems.Add(addNewWithdrawalButton);
 
             ApplicationBarMenuItem addNewBudgetButton = new ApplicationBarMenuItem("Add New Budget");
             addNewBudgetButton.Click += AddBudgetButton_Click_1;
