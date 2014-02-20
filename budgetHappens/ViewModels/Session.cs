@@ -18,7 +18,7 @@ namespace budgetHappens.ViewModels
     {
         #region Parameters
 
-        public ObservableCollection<Budget> Budgets
+        public ObservableCollection<BudgetModel> Budgets
         {
             get
             {
@@ -30,7 +30,7 @@ namespace budgetHappens.ViewModels
             }
         }
 
-        public Budget CurrentBudget
+        public BudgetModel CurrentBudget
         {
             get
             {
@@ -48,8 +48,8 @@ namespace budgetHappens.ViewModels
 
         #region Attributes
 
-        private ObservableCollection<Budget> _budgets;
-        private Budget _currentBudget;
+        private ObservableCollection<BudgetModel> _budgets;
+        private BudgetModel _currentBudget;
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
@@ -82,19 +82,19 @@ namespace budgetHappens.ViewModels
             string dataFromStorage = "";
             if (IsolatedStorageSettings.ApplicationSettings.TryGetValue("Budgets", out dataFromStorage))
             {
-                Budgets = JsonConvert.DeserializeObject<ObservableCollection<Budget>>(dataFromStorage);
+                Budgets = JsonConvert.DeserializeObject<ObservableCollection<BudgetModel>>(dataFromStorage);
             }
             else
-                Budgets = new ObservableCollection<Budget>();
+                Budgets = new ObservableCollection<BudgetModel>();
         }
 
-        public Budget GetDefaultOrNextBudget()
+        public BudgetModel GetDefaultOrNextBudget()
         {
-            Budget defaultBudget = null;
+            BudgetModel defaultBudget = null;
 
             if (Budgets.Count != 0)
             {
-                defaultBudget = (Budget)(from b in Budgets
+                defaultBudget = (BudgetModel)(from b in Budgets
                                          where b.Default == true
                                          select b).FirstOrDefault();
 
@@ -122,18 +122,18 @@ namespace budgetHappens.ViewModels
             PhoneApplicationService.Current.State["CurrentSession"] = this;
         }
 
-        internal void AddBudget(Budget newBudget)
+        internal void AddBudget(BudgetModel newBudget)
         {
             this.Budgets.Add(newBudget);
         }
 
-        internal void DeleteBudget(Budget budget)
+        internal void DeleteBudget(BudgetModel budget)
         {
             this.Budgets.Remove(budget);
         }
 
 
-        internal void ChangeCurrentBudget(Budget selectedBudget)
+        internal void ChangeCurrentBudget(BudgetModel selectedBudget)
         {
             this.CurrentBudget = selectedBudget;
         }

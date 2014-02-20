@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace budgetHappens.Models
 {
-    public class Withdrawal
+    public class WithdrawalModel
     {
         #region Parameters
 
@@ -21,7 +21,7 @@ namespace budgetHappens.Models
         #endregion
 
         #region Constructors
-        public Withdrawal(decimal amount, string description, string currencySymbol)
+        public WithdrawalModel(decimal amount, string description, string currencySymbol)
         {
             this.Amount = amount;
             this.StringAmount = currencySymbol + amount.ToString("0.00");

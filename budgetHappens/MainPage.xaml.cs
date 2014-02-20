@@ -79,7 +79,7 @@ namespace budgetHappens
 
         void AddWithdrawalButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/QuickWithdraw.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/AddQuickWithdraw.xaml", UriKind.Relative));
         }
 
         void addNewWithdrawalButton_Click(object sender, EventArgs e)
@@ -101,13 +101,13 @@ namespace budgetHappens
 
         private void ListBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            Budget selectedBudget = (Budget)ListBudgets.SelectedItem;
+            BudgetModel selectedBudget = (BudgetModel)ListBudgets.SelectedItem;
             currentSession.CurrentBudget = selectedBudget;
         }
 
         private void ListWithdrawals_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            PhoneApplicationService.Current.State["SelectedWithdrawal"] = (Withdrawal)ListWithdrawals.SelectedItem;
+            PhoneApplicationService.Current.State["SelectedWithdrawal"] = (WithdrawalModel)ListWithdrawals.SelectedItem;
             NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml?Edit=true", UriKind.Relative));
         }
 
@@ -162,7 +162,7 @@ namespace budgetHappens
             if (currentSession.CurrentBudget != null)
                 ListWithdrawals.ItemsSource = currentSession.CurrentBudget.CurrentPeriod.Withdrawals;
             else
-                ListWithdrawals.ItemsSource = new List<Withdrawal>();
+                ListWithdrawals.ItemsSource = new List<WithdrawalModel>();
 
         }
 

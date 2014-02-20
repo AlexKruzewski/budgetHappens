@@ -12,7 +12,7 @@ using budgetHappens.ViewModels;
 
 namespace budgetHappens
 {
-    public partial class QuickWithdraw : PhoneApplicationPage
+    public partial class AddQuickWithdraw : PhoneApplicationPage
     {
         #region Attributes
 
@@ -22,7 +22,7 @@ namespace budgetHappens
         #endregion
 
         #region Constructors
-        public QuickWithdraw()
+        public AddQuickWithdraw()
         {
             InitializeComponent();
         }
@@ -65,7 +65,7 @@ namespace budgetHappens
 
             QuickWithdrawModel selectedModel = list.SelectedItem as QuickWithdrawModel;
 
-            currentSession.CurrentBudget.CurrentPeriod.Withdrawals.Add(new Withdrawal(selectedModel.Amount, "Quick Withdrawal", currentSession.CurrentBudget.Currency));
+            currentSession.CurrentBudget.CurrentPeriod.Withdrawals.Add(new WithdrawalModel(selectedModel.Amount, "Quick Withdrawal", currentSession.CurrentBudget.Currency));
 
             currentSession.SaveSession();
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));

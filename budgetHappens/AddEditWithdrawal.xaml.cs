@@ -20,7 +20,7 @@ namespace budgetHappens
         #region Attributes
 
         Session currentSession = null;
-        Withdrawal selectedWithdrawal = null;
+        WithdrawalModel selectedWithdrawal = null;
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace budgetHappens
 
             if (NavigationContext.QueryString.TryGetValue("Edit", out value))
             {
-                selectedWithdrawal = (Withdrawal)PhoneApplicationService.Current.State["SelectedWithdrawal"];
+                selectedWithdrawal = (WithdrawalModel)PhoneApplicationService.Current.State["SelectedWithdrawal"];
                 selectedWithdrawal = (from w in currentSession.CurrentBudget.CurrentPeriod.Withdrawals
                                       where w.Equals(selectedWithdrawal)
                                       select w).FirstOrDefault();
@@ -57,7 +57,7 @@ namespace budgetHappens
 
         private void ButtonAddEditWithdrawal_Click_1(object sender, RoutedEventArgs e)
         {
-            Period currentPeriod = currentSession.CurrentBudget.CurrentPeriod;
+            PeriodModel currentPeriod = currentSession.CurrentBudget.CurrentPeriod;
             decimal amount = decimal.Parse(TextBoxAmount.Text);
 
             if (selectedWithdrawal != null)
@@ -68,7 +68,7 @@ namespace budgetHappens
             }
             else
             {
-                currentPeriod.Withdrawals.Add(new Withdrawal(amount, TextBoxDescription.Text, currentSession.CurrentBudget.Currency));
+                currentPeriod.Withdrawals.Add(new WithdrawalModel(amount, TextBoxDescription.Text, currentSession.CurrentBudget.Currency));
             }
 
             currentSession.SaveSession();

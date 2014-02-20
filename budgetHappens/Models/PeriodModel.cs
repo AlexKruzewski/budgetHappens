@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace budgetHappens.Models
 {
-    public class Period
+    public class PeriodModel
     {
         #region Parameters
 
@@ -29,7 +29,7 @@ namespace budgetHappens.Models
             }
         }
 
-        public ObservableCollection<Withdrawal> Withdrawals { get; set; }
+        public ObservableCollection<WithdrawalModel> Withdrawals { get; set; }
 
         #endregion
 
@@ -38,7 +38,7 @@ namespace budgetHappens.Models
 
         #region Constructors
 
-        public Period(DayOfWeek startDay, decimal periodAmount, PeriodLength length)
+        public PeriodModel(DayOfWeek startDay, decimal periodAmount, PeriodLength length)
         {
             switch (length)
             {
@@ -57,7 +57,7 @@ namespace budgetHappens.Models
             }
 
             PeriodAmount = periodAmount;
-            Withdrawals = new ObservableCollection<Withdrawal>();
+            Withdrawals = new ObservableCollection<WithdrawalModel>();
         }
 
         #endregion

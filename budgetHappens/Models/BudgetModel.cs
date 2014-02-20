@@ -11,7 +11,7 @@ using Windows.Storage;
 
 namespace budgetHappens.Models
 {
-    public class Budget
+    public class BudgetModel
     {
 
         #region Parameters
@@ -21,7 +21,7 @@ namespace budgetHappens.Models
         public DayOfWeek BudgetStartDay { get; set; }
         public PeriodLength PeriodLength { get; set; }
         public Decimal AmountPerPeriod { get; set; }
-        public Period CurrentPeriod { get; set; }
+        public PeriodModel CurrentPeriod { get; set; }
         public bool Default { get; set; }
 
         #endregion
@@ -45,9 +45,9 @@ namespace budgetHappens.Models
             return (DateTime.Now < this.CurrentPeriod.EndDate) ? true : false;
         }
 
-        internal Period StartNewPeriod()
+        internal PeriodModel StartNewPeriod()
         {
-            Period newPeriod = new Period(this.BudgetStartDay, this.AmountPerPeriod, this.PeriodLength);
+            PeriodModel newPeriod = new PeriodModel(this.BudgetStartDay, this.AmountPerPeriod, this.PeriodLength);
             return newPeriod;
         }
 

@@ -37,7 +37,7 @@ namespace budgetHappens
 
         private void ButtonSave_Click_1(object sender, RoutedEventArgs e)
         {
-            Budget newBudget = new Budget();
+            BudgetModel newBudget = new BudgetModel();
 
             newBudget.Name = TextBoxName.Text;
             newBudget.AmountPerPeriod = decimal.Parse(TextBoxAmount.Text);
@@ -47,7 +47,7 @@ namespace budgetHappens
             newBudget.PeriodLength = periodLength;
 
             newBudget.BudgetStartDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), ListPickerStartDay.SelectedIndex.ToString());
-            newBudget.CurrentPeriod = new Period(newBudget.BudgetStartDay, newBudget.AmountPerPeriod, newBudget.PeriodLength);
+            newBudget.CurrentPeriod = new PeriodModel(newBudget.BudgetStartDay, newBudget.AmountPerPeriod, newBudget.PeriodLength);
 
             Session currentSession = (Session)PhoneApplicationService.Current.State["CurrentSession"];
 
