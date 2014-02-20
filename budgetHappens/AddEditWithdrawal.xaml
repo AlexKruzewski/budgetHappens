@@ -65,8 +65,20 @@
             <Button 
                 Name="ButtonAddEditWithdrawal"
                 Grid.Row="2"
+                Width="auto"
                 Click="ButtonAddEditWithdrawal_Click_1"
-                Content="Add Withdrawal"/>
+                Content="Add Withdrawal"
+                />
+            <Button
+                Name="ButtonRemoveWithdrawal"
+                Grid.Row="2"
+                Width="230"
+                HorizontalAlignment="Right"
+                Content="Delete"
+                Foreground="Red"
+                BorderBrush="Red"
+                Visibility="Collapsed"
+                />
         </Grid>
     </Grid>
 
