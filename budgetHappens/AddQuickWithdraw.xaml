@@ -37,7 +37,8 @@
             Grid.Row="1"
             SelectionChanged="LongListSelector_SelectionChanged_1"
             LayoutMode="Grid"
-            GridCellSize="150,150"
+            GridCellSize="140,140"
+            Margin="40,0,0,0"
             Name="ListQuickWithdraws"
             ItemTemplate="{StaticResource QuickWithdrawTemplate}"/>
     </Grid>
