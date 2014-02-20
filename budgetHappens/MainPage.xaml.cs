@@ -56,17 +56,18 @@ namespace budgetHappens
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
             if (currentSession.CurrentBudget != null)
                 currentSession.PropertyChanged += CurrentSession_PropertyChanged;
             else
                 SetUpCurrentBudget();
 
             SetupLists();
+            
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+
             if (currentSession.Budgets.Count > 0)
                 HighLightSelectItem(ListBudgets);
         }
@@ -128,8 +129,6 @@ namespace budgetHappens
                     currentSession.SaveSession();
                 }
 
-                BuildLocalizedApplicationBar();
-
                 TextBlockBudgetName.Text = currentSession.CurrentBudget.Name;
                 TextBlockCurrentAmount.Text = currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
                 TextBlockPeriodAmount.Text = "of " + currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
@@ -143,13 +142,11 @@ namespace budgetHappens
                 StackPanelCurrent.Children.Remove(TextBlockBudgetName);
                 StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
                 StackPanelCurrent.Children.Remove(TextBlockPeriodAmount);
-
-                Button addBudgetbutton = new Button();
-                addBudgetbutton.Content = "Add Budget";
-                addBudgetbutton.Click += AddBudgetButton_Click_1;
-                StackPanelCurrent.Children.Add(addBudgetbutton);
+                ApplicationBar.IsVisible = false;
+                TextBlockNoBudgetSet.Visibility = System.Windows.Visibility.Visible;
+                ButtonAddBuget.Visibility = System.Windows.Visibility.Visible;
             }
-
+            
         }
 
         private void SetupLists()
@@ -162,31 +159,6 @@ namespace budgetHappens
             else
                 ListWithdrawals.ItemsSource = new List<Withdrawal>();
 
-        }
-
-        private void BuildLocalizedApplicationBar()
-        {
-            // Set the page's ApplicationBar to a new instance of ApplicationBar.
-            ApplicationBar = new ApplicationBar();
-
-            // Create a new button and set the text value to the localized string from AppResources.
-            ApplicationBarIconButton addWithdrawalButton = new ApplicationBarIconButton(new Uri("/Toolkit.Content/ApplicationBar.Add.png", UriKind.Relative));
-            addWithdrawalButton.Text = "Quick Withdraw";
-            addWithdrawalButton.Click += AddWithdrawalButton_Click;
-            ApplicationBar.Buttons.Add(addWithdrawalButton);
-
-            ApplicationBarMenuItem addNewWithdrawalButton = new ApplicationBarMenuItem("Add Withdrawal");
-            addNewWithdrawalButton.Click += addNewWithdrawalButton_Click;
-            ApplicationBar.MenuItems.Add(addNewWithdrawalButton);
-
-            ApplicationBarMenuItem addNewBudgetButton = new ApplicationBarMenuItem("Add New Budget");
-            addNewBudgetButton.Click += AddBudgetButton_Click_1;
-            ApplicationBar.MenuItems.Add(addNewBudgetButton);
-
-            ApplicationBarMenuItem deleteCurrentBudgetButton = new ApplicationBarMenuItem();
-            deleteCurrentBudgetButton.Text = "Delete Current Budget";
-            deleteCurrentBudgetButton.Click += DeleteCurrentBudget_Click;
-            ApplicationBar.MenuItems.Add(deleteCurrentBudgetButton);
         }
 
         public void HighLightSelectItem(LongListSelector selectedList)
