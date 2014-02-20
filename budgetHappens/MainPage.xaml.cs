@@ -121,32 +121,37 @@ namespace budgetHappens
                 currentSession.CurrentBudget = currentSession.GetDefaultOrNextBudget();
 
             if (currentSession.CurrentBudget != null)
-            {
-
-                if (!currentSession.CurrentBudget.IsPeriodValid())
-                {
-                    currentSession.CurrentBudget.CurrentPeriod = currentSession.CurrentBudget.StartNewPeriod();
-                    currentSession.SaveSession();
-                }
-
-                TextBlockBudgetName.Text = currentSession.CurrentBudget.Name;
-                TextBlockCurrentAmount.Text = currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
-                TextBlockPeriodAmount.Text = "of " + currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
-                TextBlockDaysLeft.Text = (currentSession.CurrentBudget.CurrentPeriod.EndDate.Day - DateTime.Now.Day).ToString() + " Days Left";
-
-            }
+                ShowCaseBugetsAvailable();
             else
-            {
-
-                StackPanelCurrent.Children.Remove(TextBlockDaysLeft);
-                StackPanelCurrent.Children.Remove(TextBlockBudgetName);
-                StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
-                StackPanelCurrent.Children.Remove(TextBlockPeriodAmount);
-                ApplicationBar.IsVisible = false;
-                TextBlockNoBudgetSet.Visibility = System.Windows.Visibility.Visible;
-                ButtonAddBuget.Visibility = System.Windows.Visibility.Visible;
-            }
+                ShowCaseNoBudgets();
             
+        }
+
+        private void ShowCaseBugetsAvailable()
+        {
+            if (!currentSession.CurrentBudget.IsPeriodValid())
+            {
+                currentSession.CurrentBudget.CurrentPeriod = currentSession.CurrentBudget.StartNewPeriod();
+                currentSession.SaveSession();
+            }
+
+            TextBlockBudgetName.Text = currentSession.CurrentBudget.Name;
+            TextBlockCurrentAmount.Text = currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
+            TextBlockPeriodAmount.Text = "of " + currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
+            TextBlockDaysLeft.Text = (currentSession.CurrentBudget.CurrentPeriod.EndDate.Day - DateTime.Now.Day).ToString() + " Days Left";
+        }
+
+        private void ShowCaseNoBudgets()
+        {
+            StackPanelCurrent.Children.Remove(TextBlockDaysLeft);
+            StackPanelCurrent.Children.Remove(TextBlockBudgetName);
+            StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
+            StackPanelCurrent.Children.Remove(TextBlockPeriodAmount);
+
+            ApplicationBar.IsVisible = false;
+
+            TextBlockNoBudgetSet.Visibility = System.Windows.Visibility.Visible;
+            ButtonAddBuget.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void SetupLists()
