@@ -78,6 +78,7 @@
                 Foreground="Red"
                 BorderBrush="Red"
                 Visibility="Collapsed"
+                Click="ButtonRemoveWithdrawal_Click_1"
                 />
         </Grid>
     </Grid>

@@ -52,6 +52,7 @@ namespace budgetHappens
                 ButtonAddEditWithdrawal.Content = "Save";
                 ButtonAddEditWithdrawal.Width = 230;
                 ButtonAddEditWithdrawal.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
                 ButtonRemoveWithdrawal.Visibility = System.Windows.Visibility.Visible;
 
                 PhoneApplicationService.Current.State["SelectedWithdrawal"] = null;
@@ -78,7 +79,16 @@ namespace budgetHappens
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
+        private void ButtonRemoveWithdrawal_Click_1(object sender, RoutedEventArgs e)
+        {
+            currentSession.DeleteWithdrawal(currentSession.CurrentBudget, this.selectedWithdrawal);
+            currentSession.SaveSession();
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+        }
+
         #endregion
+
+        
 
         #region Methods
 
