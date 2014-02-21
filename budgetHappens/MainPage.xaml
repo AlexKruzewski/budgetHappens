@@ -17,7 +17,11 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
 
         <!--Pivot Control-->
-        <phone:Pivot Title="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Background="{Binding Path=LocalizedResources.BackgroundColor, Source={StaticResource LocalizedStrings}}">
+        <phone:Pivot 
+            Title="{Binding Path=LocalizedResources.ApplicationTitle, 
+                Source={StaticResource LocalizedStrings}}" 
+            Background="{Binding Path=LocalizedResources.BackgroundColor, 
+                Source={StaticResource LocalizedStrings}}">
             <!--Pivot item one-->
             <phone:PivotItem Header="Current" Margin="10,28,14,0">
                 <StackPanel 
