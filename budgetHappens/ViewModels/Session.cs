@@ -138,7 +138,11 @@ namespace budgetHappens.ViewModels
             this.CurrentBudget = selectedBudget;
         }
 
-        #endregion
+        internal void DeleteWithdrawal(BudgetModel budgetModel, WithdrawalModel withdrawalModel)
+        {
+            budgetModel.CurrentPeriod.Withdrawals.Remove(withdrawalModel);
+        }
 
+        #endregion
     }
 }
