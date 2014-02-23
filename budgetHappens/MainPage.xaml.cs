@@ -62,7 +62,6 @@ namespace budgetHappens
                 SetUpCurrentBudget();
 
             SetupLists();
-            
         }
 
         void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -138,7 +137,8 @@ namespace budgetHappens
             TextBlockBudgetName.Text = currentSession.CurrentBudget.Name;
             TextBlockCurrentAmount.Text = currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
             TextBlockPeriodAmount.Text = "of " + currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
-            TextBlockDaysLeft.Text = (currentSession.CurrentBudget.CurrentPeriod.EndDate.Day - DateTime.Now.Day).ToString() + " Days Left";
+            double daysLeft = (currentSession.CurrentBudget.CurrentPeriod.EndDate - DateTime.Now).TotalDays;
+            TextBlockDaysLeft.Text = daysLeft.ToString("0") + " Days Left";
         }
 
         private void ShowCaseNoBudgets()
