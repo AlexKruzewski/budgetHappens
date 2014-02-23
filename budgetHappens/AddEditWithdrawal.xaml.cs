@@ -50,7 +50,6 @@ namespace budgetHappens
                 TextBoxAmount.Text = selectedWithdrawal.Amount.ToString("0.00");
                 TextBoxDescription.Text = selectedWithdrawal.Description;
                 ButtonAddEditWithdrawal.Content = "Save";
-                ButtonAddEditWithdrawal.Width = 230;
                 ButtonAddEditWithdrawal.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
                 ButtonRemoveWithdrawal.Visibility = System.Windows.Visibility.Visible;
@@ -87,8 +86,6 @@ namespace budgetHappens
         }
 
         #endregion
-
-        
 
         #region Methods
 
