@@ -162,7 +162,12 @@ namespace budgetHappens
             ListBudgets.SelectedItem = currentSession.CurrentBudget;
 
             if (currentSession.CurrentBudget != null)
-                ListWithdrawals.ItemsSource = currentSession.CurrentBudget.CurrentPeriod.Withdrawals;
+            {
+                var withdrawalList = (from withdrawal in currentSession.CurrentBudget.CurrentPeriod.Withdrawals
+                                     select withdrawal).OrderByDescending(x=>x.WithdrawalDate).ToList();
+
+                ListWithdrawals.ItemsSource = withdrawalList;
+            }
             else
                 ListWithdrawals.ItemsSource = new List<WithdrawalModel>();
 
