@@ -69,7 +69,11 @@
                         Name="ButtonWithdraw"
                         Content="Withdraw"
                         FontSize="32"
+                        Margin="0,40,0,0"
                         Click="AddWithdrawalButton_Click"
+                        Foreground="{Binding 
+                            Path=LocalizedResources.Blue, 
+                            Source={StaticResource LocalizedStrings}}"
                         />
                 </StackPanel>
 

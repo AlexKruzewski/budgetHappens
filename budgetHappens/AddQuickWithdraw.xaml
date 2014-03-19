@@ -21,6 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
@@ -29,7 +30,7 @@
                 Text="{Binding Path=LocalizedResources.ApplicationTitle, 
                     Source={StaticResource LocalizedStrings}}"
                 Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Quick Withdraw" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Withdraw" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -41,6 +42,16 @@
             Margin="40,0,0,0"
             Name="ListQuickWithdraws"
             ItemTemplate="{StaticResource QuickWithdrawTemplate}"/>
+        <Button
+            Grid.Row= "2"
+            Name="ButtonOtherAmount"
+            Content="Other Amount"
+            Click="ButtonOtherAmount_Click_1"
+            Margin="25,0,20,40"
+            Foreground="{Binding 
+                    Path=LocalizedResources.Blue, 
+                    Source={StaticResource LocalizedStrings}}"
+            />
     </Grid>
 
 </phone:PhoneApplicationPage>

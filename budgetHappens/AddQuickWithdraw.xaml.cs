@@ -72,6 +72,12 @@ namespace budgetHappens
 
         }
 
+        private void ButtonOtherAmount_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml", UriKind.Relative));
+        }
+
         #endregion
+
     }
 }
