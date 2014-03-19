@@ -65,6 +65,12 @@
                         Text="" 
                         FontSize="32" 
                         TextAlignment="Center"/>
+                    <Button
+                        Name="ButtonWithdraw"
+                        Content="Withdraw"
+                        FontSize="32"
+                        Click="AddWithdrawalButton_Click"
+                        />
                 </StackPanel>
 
                 <!--Double line list with text wrapping-->
@@ -120,16 +126,7 @@
             IsMenuEnabled="True"
             x:Name="ApplicationBarCurrent">
             
-            <shell:ApplicationBarIconButton 
-                IconUri="/Toolkit.Content/ApplicationBar.Add.png"
-                Click="AddWithdrawalButton_Click"
-                Text="Quick Withdraw"/>
-            
             <shell:ApplicationBar.MenuItems>
-                
-                <shell:ApplicationBarMenuItem 
-                    Text="Add Withdrawal"
-                    Click="addNewWithdrawalButton_Click"/>
                 
                 <shell:ApplicationBarMenuItem 
                     Text="Add New Budget"

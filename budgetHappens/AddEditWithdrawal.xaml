@@ -65,9 +65,13 @@
             <Button 
                 Name="ButtonAddEditWithdrawal"
                 Grid.Row="2"
-                Width="auto"
+                Width="230"
                 Click="ButtonAddEditWithdrawal_Click_1"
                 Content="Add Withdrawal"
+                Margin="0,20,0,0"
+                Foreground="{Binding 
+                    Path=LocalizedResources.Blue, 
+                    Source={StaticResource LocalizedStrings}}"
                 />
             <Button
                 Name="ButtonRemoveWithdrawal"
@@ -76,9 +80,9 @@
                 HorizontalAlignment="Right"
                 Content="Delete"
                 Foreground="Red"
-                BorderBrush="Red"
                 Visibility="Collapsed"
                 Click="ButtonRemoveWithdrawal_Click_1"
+                Margin="0,20,0,0"
                 />
         </Grid>
     </Grid>
