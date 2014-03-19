@@ -82,7 +82,7 @@
             </phone:PivotItem>
 
             <!--Pivot item two-->
-            <phone:PivotItem Header="Withdrawals">
+            <phone:PivotItem Header="History">
                 <!--Double line list no text wrapping-->
                 <phone:LongListSelector Name="ListWithdrawals" 
                                         Margin="0,0,-12,0" 
