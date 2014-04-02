@@ -47,10 +47,13 @@
             Name="ButtonOtherAmount"
             Content="Other Amount"
             Click="ButtonOtherAmount_Click_1"
-            Margin="25,0,20,40"
-            Foreground="{Binding 
-                    Path=LocalizedResources.Blue, 
-                    Source={StaticResource LocalizedStrings}}"
+            FontSize="48"
+            Width="auto"
+            Margin="20,0,20,40"
+            Background="{Binding 
+                Path=LocalizedResources.Blue, 
+                Source={StaticResource LocalizedStrings}}"
+            BorderThickness="0"
             />
     </Grid>
 

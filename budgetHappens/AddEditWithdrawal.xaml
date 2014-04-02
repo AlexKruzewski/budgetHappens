@@ -34,55 +34,66 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
             <TextBlock 
-                Text="Amount:" 
+                Text="Amount" 
                 Grid.Row="0"
-                Width="150"
+                Grid.Column="0"
                 VerticalAlignment="Top"
-                HorizontalAlignment="Left"
                 Margin="20,18,0,0"
+                FontSize="32"
                 />
             <TextBox Name="TextBoxAmount" 
                      Grid.Row="0" 
-                     Width="300" 
+                     Grid.Column="1"
+                     HorizontalAlignment="Stretch" 
                      VerticalAlignment="Top"
-                     HorizontalAlignment="Right"
                      InputScope="Number"
                      />
             <TextBlock 
                 Text="Description" 
                 Grid.Row="1"
-                Width="150"
+                Grid.Column="0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 Margin="20,18,0,0"
+                FontSize="32"
                 />
             <TextBox Name="TextBoxDescription" 
                      Grid.Row="1" 
-                     Width="300" 
+                     Grid.Column="1"
                      VerticalAlignment="Top"
-                     HorizontalAlignment="Right"/>
+                     HorizontalAlignment="Stretch"/>
             <Button 
                 Name="ButtonAddEditWithdrawal"
                 Grid.Row="2"
-                Width="230"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 Click="ButtonAddEditWithdrawal_Click_1"
-                Content="Add Withdrawal"
-                Margin="0,20,0,0"
-                Foreground="{Binding 
+                Content="Withdraw"
+                FontSize="48"
+                Width="auto"
+                Margin="20,40,20,0"
+                Background="{Binding 
                     Path=LocalizedResources.Blue, 
                     Source={StaticResource LocalizedStrings}}"
+                BorderThickness="0"
                 />
             <Button
                 Name="ButtonRemoveWithdrawal"
                 Grid.Row="2"
-                Width="230"
-                HorizontalAlignment="Right"
+                Grid.Column="1"
                 Content="Delete"
-                Foreground="Red"
                 Visibility="Collapsed"
-                Click="ButtonRemoveWithdrawal_Click_1"
-                Margin="0,20,0,0"
+                FontSize="48"
+                Width="auto"
+                Margin="20,40,20,0"
+                Background="Crimson"
+                BorderThickness="0"
                 />
         </Grid>
     </Grid>

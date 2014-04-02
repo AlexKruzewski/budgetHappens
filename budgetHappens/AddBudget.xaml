@@ -38,77 +38,85 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
             <TextBlock 
-                Text="Budget Name" 
+                Text="Name" 
                 Grid.Row="0"
-                Width="150"
+                Grid.Column="0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 Margin="20,18,0,0"
+                FontSize="32"
                 />
             <TextBox Name="TextBoxName" 
-                     Grid.Row="0" 
-                     Width="300" 
+                     Grid.Row="0"
+                     Grid.Column="1" 
                      VerticalAlignment="Top"
-                     HorizontalAlignment="Right"/>
+                     HorizontalAlignment="Stretch"/>
             <TextBlock 
-                Text="Budget Amount" 
+                Text="Amount" 
                 Grid.Row="1"
-                Width="150"
+                Grid.Column="0"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Left"
                 Margin="20,18,0,0"
+                FontSize="32"
                 />
             <TextBox Name="TextBoxAmount" 
-                     Grid.Row="1" 
-                     Width="300" 
+                     Grid.Row="1"
+                     Grid.Column="1"
                      VerticalAlignment="Top"
-                     HorizontalAlignment="Right"
+                     HorizontalAlignment="Stretch"
                      InputScope="Number"/>
             <TextBlock 
                 Text="Currency" 
                 Grid.Row="2"
-                Width="150"
+                Grid.Column="0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 Margin="20,29,0,28"
+                FontSize="32"
                 />
             <toolkit:ListPicker x:Name="ListPickerCurrency" 
-                     Grid.Row="2" 
-                     Width="274" 
+                     Grid.Row="2"
+                     Grid.Column="1"
                      VerticalAlignment="Top"
-                     HorizontalAlignment="Right"
+                     HorizontalAlignment="Stretch"
                                 />
             <TextBlock 
-                Text="Period Length" 
+                Text="Length" 
                 Grid.Row="3"
-                Width="150"
+                Grid.Column="0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 Margin="20,29,0,16"
+                FontSize="32"
                 />
             <toolkit:ListPicker x:Name="ListPickerPeriod" 
-                     Grid.Row="3" 
-                     Width="274" 
+                     Grid.Row="3"
+                     Grid.Column="1" 
                      VerticalAlignment="Top"
-                     HorizontalAlignment="Right" 
-                     Margin="0,12,12,0">
+                     HorizontalAlignment="Stretch" 
+                     >
             </toolkit:ListPicker>
             
             <TextBlock 
                 Text="Start Day" 
                 Grid.Row="4"
-                Width="150"
+                Grid.Column="0"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 Margin="20,29,0,16"
+                FontSize="32"
                 />
             <toolkit:ListPicker x:Name="ListPickerStartDay" 
-                     Grid.Row="4" 
-                     Width="274" 
+                     Grid.Row="4"
+                     Grid.Column="1"             
                      VerticalAlignment="Top"
-                     HorizontalAlignment="Right" 
-                     Margin="0,12,12,0"
+                     HorizontalAlignment="Stretch" 
                      >
                 <toolkit:ListPicker.FullModeItemTemplate>
                     <DataTemplate x:Name="ListPickerFullItemTemplate">
@@ -123,12 +131,15 @@
                 Name="ButtonSave" 
                 Content="Save" 
                 Grid.Row="5"
+                Grid.ColumnSpan="2"
                 Click="ButtonSave_Click_1"
-                Margin="0,20,0,0"
-                Foreground="{Binding 
+                FontSize="48"
+                Width="auto"
+                Margin="20,40,20,0"
+                Background="{Binding 
                     Path=LocalizedResources.Blue, 
                     Source={StaticResource LocalizedStrings}}"
-                 Width="230"
+                BorderThickness="0"
                 />
             
         </Grid>

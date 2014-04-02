@@ -50,7 +50,7 @@ namespace budgetHappens
                 TextBoxAmount.Text = selectedWithdrawal.Amount.ToString("0.00");
                 TextBoxDescription.Text = selectedWithdrawal.Description;
                 ButtonAddEditWithdrawal.Content = "Save";
-                ButtonAddEditWithdrawal.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                Grid.SetColumnSpan(ButtonAddEditWithdrawal, 1);
 
                 ButtonRemoveWithdrawal.Visibility = System.Windows.Visibility.Visible;
 
