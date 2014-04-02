@@ -104,7 +104,12 @@
                                         TextWrapping="NoWrap" 
                                         Margin="12,-6,0,0" 
                                         Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                </StackPanel>
+                                <TextBlock 
+                                        Text="{Binding WithdrawalDate}" 
+                                        TextWrapping="NoWrap" 
+                                        Margin="12,-6,0,0" 
+                                        Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            </StackPanel>
                             </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
