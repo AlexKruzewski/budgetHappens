@@ -78,8 +78,7 @@
                     FontSize="32"
                     Foreground="{Binding 
                         Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    />
+                        Source={StaticResource LocalizedStrings}}"/>
                 <TextBox 
                     Name="TextBoxName" 
                     Grid.Row="0"
@@ -91,8 +90,7 @@
                         Source={StaticResource LocalizedStrings}}"
                     Foreground="{Binding 
                         Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    />
+                        Source={StaticResource LocalizedStrings}}" />
                 <TextBlock 
                     Text="Amount" 
                     Grid.Row="1"
@@ -103,8 +101,7 @@
                     FontSize="32"
                     Foreground="{Binding 
                         Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    />
+                        Source={StaticResource LocalizedStrings}}"/>
                 <TextBox 
                     Name="TextBoxAmount" 
                     Grid.Row="1"
@@ -117,15 +114,15 @@
                         Source={StaticResource LocalizedStrings}}"
                     BorderBrush="{Binding 
                         Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}"
+                        Source={StaticResource LocalizedStrings}}" Height="72"
                          />
                 <TextBlock 
                     Text="Currency" 
                     Grid.Row="2"
                     Grid.Column="0"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Left"
-                    Margin="20,29,0,28"
+                    Margin="20,18,0,0"
                     FontSize="32"
                     Foreground="{Binding 
                         Path=LocalizedResources.ThirdColor, 
@@ -147,13 +144,13 @@
                     Text="Length" 
                     Grid.Row="3"
                     Grid.Column="0"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Left"
-                    Margin="20,29,0,16"
+                    Margin="20,18,0,0"
                     FontSize="32"
                     Foreground="{Binding 
                         Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}"
+                        Source={StaticResource LocalizedStrings}}" 
                     />
                 <toolkit:ListPicker 
                     x:Name="ListPickerPeriod" 
@@ -172,14 +169,13 @@
                     Text="Start Day" 
                     Grid.Row="4"
                     Grid.Column="0"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     HorizontalAlignment="Left"
-                    Margin="20,29,0,16"
+                    Margin="20,18,0,0"
                     FontSize="32"
                     Foreground="{Binding 
                         Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    />
+                        Source={StaticResource LocalizedStrings}}"/>
                 <toolkit:ListPicker 
                     x:Name="ListPickerStartDay" 
                     Grid.Row="4"
@@ -190,7 +186,7 @@
                         Path=LocalizedResources.ThirdColor, 
                         Source={StaticResource LocalizedStrings}}"
                     Foreground="{Binding 
-                        Path=LocalizedResources.SecondaryColor, 
+                        Path=LocalizedResources.ThirdColor, 
                         Source={StaticResource LocalizedStrings}}"
                     Background="{Binding 
                         Path=LocalizedResources.PrimaryColor, 
