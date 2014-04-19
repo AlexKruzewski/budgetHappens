@@ -14,31 +14,56 @@
     shell:SystemTray.IsVisible="False" Margin="0,0,-3,0">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="{Binding Path=LocalizedResources.Blue, 
-                Source={StaticResource LocalizedStrings}}">
+    <Grid 
+        x:Name="LayoutRoot"
+        Background="{Binding 
+            Path=LocalizedResources.SecondaryColor, 
+            Source={StaticResource LocalizedStrings}}">
         <TextBlock 
-            Text="{Binding Path=LocalizedResources.ApplicationTitle, 
+            Text="{Binding 
+                Path=LocalizedResources.ApplicationTitle, 
+                Source={StaticResource LocalizedStrings}}"
+            Foreground="{Binding 
+                Path=LocalizedResources.PrimaryColor, 
                 Source={StaticResource LocalizedStrings}}"
             Margin="25,3,0,0"
             FontSize="28" />
         <!--Pivot Control-->
         <phone:Pivot 
-            Background="{Binding Path=LocalizedResources.BackgroundColor, 
-                Source={StaticResource LocalizedStrings}}" Margin="0,54,0,0">
+            Background="{Binding 
+                Path=LocalizedResources.PrimaryColor, 
+                Source={StaticResource LocalizedStrings}}" 
+            Margin="0,54,0,0"
+            Foreground="{Binding 
+                Path=LocalizedResources.ThirdColor, 
+                Source={StaticResource LocalizedStrings}}">
             <!--Pivot item one-->
-            <phone:PivotItem Header="Current" Margin="10,28,0,0">
+            <phone:PivotItem 
+                Header="Current"
+                Margin="10,28,0,0">
                 <StackPanel 
                     HorizontalAlignment="Left" 
                     Height="603" 
                     VerticalAlignment="Top" 
                     Width="454"
-                    Name="StackPanelCurrent" Margin="0,0,0,-63">
-                    <TextBlock Name="TextBlockBudgetName" Text="" FontSize="32" Height="121"/>
+                    Name="StackPanelCurrent" 
+                    Margin="0,0,0,-63">
+                    
+                    <TextBlock 
+                        Name="TextBlockBudgetName" 
+                        Text="" 
+                        FontSize="32" 
+                        Height="121"
+                        Foreground="{Binding 
+                            Path=LocalizedResources.ThirdColor, 
+                            Source={StaticResource LocalizedStrings}}"/>
                     <TextBlock x:Name="TextBlockCurrentAmount" 
                                Text="" 
                                FontSize="96" 
                                TextAlignment="Center" 
-                               Foreground="#15bae8" 
+                               Foreground="{Binding 
+                                    Path=LocalizedResources.SecondaryColor, 
+                                    Source={StaticResource LocalizedStrings}}" 
                                HorizontalAlignment="Center" 
                                Margin="10,0" 
                                Height="154"
@@ -50,7 +75,10 @@
                         Width="auto"
                         Height="auto"
                         TextWrapping="Wrap"
-                        Visibility="Collapsed"/>
+                        Visibility="Collapsed"
+                        Foreground="{Binding 
+                            Path=LocalizedResources.ThirdColor, 
+                            Source={StaticResource LocalizedStrings}}"/>
                     <Button
                         Name="ButtonAddBuget"
                         Content="Add Budget"
@@ -60,18 +88,24 @@
                         Width="auto"
                         Margin="20,40,20,0"
                         Background="{Binding 
-                            Path=LocalizedResources.Blue, 
+                            Path=LocalizedResources.SecondaryColor, 
                             Source={StaticResource LocalizedStrings}}"
                         BorderThickness="0"/>
                     <TextBlock 
                         x:Name="TextBlockPeriodAmount" 
                         Text="" 
-                        FontSize="32" 
+                        FontSize="32"
+                        Foreground="{Binding 
+                            Path=LocalizedResources.ThirdColor, 
+                            Source={StaticResource LocalizedStrings}}"
                         TextAlignment="Center"/>
                     <TextBlock 
                         x:Name="TextBlockDaysLeft" 
                         Text="" 
-                        FontSize="32" 
+                        FontSize="32"
+                        Foreground="{Binding 
+                            Path=LocalizedResources.ThirdColor, 
+                            Source={StaticResource LocalizedStrings}}"
                         TextAlignment="Center"/>
                     <Button
                         Name="ButtonWithdraw"
@@ -81,7 +115,7 @@
                         Width="auto"
                         Margin="20,40,20,0"
                         Background="{Binding 
-                            Path=LocalizedResources.Blue, 
+                            Path=LocalizedResources.SecondaryColor, 
                             Source={StaticResource LocalizedStrings}}"
                         BorderThickness="0"
                         />
@@ -94,12 +128,13 @@
             <!--Pivot item two-->
             <phone:PivotItem Header="History">
                 <!--Double line list no text wrapping-->
-                <phone:LongListSelector Name="ListWithdrawals" 
-                                        Margin="0,0,-12,0" 
-                                        ItemsSource="{Binding 
-                                            Path=CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals, 
-                                            Source={StaticResource LocalizedStrings}}"
-                                        SelectionChanged="ListWithdrawals_SelectionChanged_1">
+                <phone:LongListSelector 
+                    Name="ListWithdrawals" 
+                    Margin="0,0,-12,0" 
+                    ItemsSource="{Binding 
+                        Path=CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals, 
+                        Source={StaticResource LocalizedStrings}}"
+                        SelectionChanged="ListWithdrawals_SelectionChanged_1">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <StackPanel 
@@ -149,6 +184,7 @@
             IsMenuEnabled="True"
             BackgroundColor="#1f8aa8"
             x:Name="ApplicationBarCurrent"
+            Mode="Minimized"
            >
 
             <shell:ApplicationBar.MenuItems>

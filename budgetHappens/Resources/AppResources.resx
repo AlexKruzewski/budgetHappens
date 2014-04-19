@@ -128,10 +128,13 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>budgetHappens</value>
   </data>
-  <data name="BackgroundColor" xml:space="preserve">
-    <value>#333</value>
+  <data name="PrimaryColor" xml:space="preserve">
+    <value>#fff</value>
   </data>
-  <data name="Blue" xml:space="preserve">
+  <data name="SecondaryColor" xml:space="preserve">
     <value>#15bae8</value>
+  </data>
+  <data name="ThirdColor" xml:space="preserve">
+    <value>#1f8aa8</value>
   </data>
 </root>

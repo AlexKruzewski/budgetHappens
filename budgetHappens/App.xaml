@@ -28,10 +28,10 @@
                                         <VisualState x:Name="Selected">
                                             <Storyboard>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Block.Foreground)" Storyboard.TargetName="TextBlock">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding Path=LocalizedResources.Blue, Source={StaticResource LocalizedStrings}}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding Path=LocalizedResources.SecondaryColor, Source={StaticResource LocalizedStrings}}"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="MyBorder">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding Path=LocalizedResources.Blue, Source={StaticResource LocalizedStrings}}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{Binding Path=LocalizedResources.SecondaryColor, Source={StaticResource LocalizedStrings}}"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
@@ -54,7 +54,7 @@
         
         <DataTemplate x:Key="QuickWithdrawTemplate">
             <Grid 
-                Background="{Binding Path=LocalizedResources.Blue, 
+                Background="{Binding Path=LocalizedResources.SecondaryColor, 
                             Source={StaticResource LocalizedStrings}}"
                             Margin="0,0,12,12">
                 <StackPanel>

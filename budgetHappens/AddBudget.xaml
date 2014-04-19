@@ -12,139 +12,218 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
-    
+    shell:SystemTray.IsVisible="False">
+
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="{Binding Path=LocalizedResources.BackgroundColor, Source={StaticResource LocalizedStrings}}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!--
-        
-        
-        Panel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="AddBudget" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+    <Grid
+        Background="{Binding 
+                Path=LocalizedResources.SecondaryColor, 
+                Source={StaticResource LocalizedStrings}}">
+        <TextBlock 
+            Text="{Binding 
+                Path=LocalizedResources.ApplicationTitle, 
+                Source={StaticResource LocalizedStrings}}"
+            Foreground="{Binding 
+                Path=LocalizedResources.PrimaryColor, 
+                Source={StaticResource LocalizedStrings}}"
+            Margin="25,3,0,0"
+            FontSize="28" />
+        <Grid 
+            x:Name="LayoutRoot" 
+            Background="{Binding 
+                Path=LocalizedResources.PrimaryColor, 
+                Source={StaticResource LocalizedStrings}}" Margin="0,54,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock 
-                Text="Name" 
-                Grid.Row="0"
-                Grid.Column="0"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Margin="20,18,0,0"
-                FontSize="32"
-                />
-            <TextBox Name="TextBoxName" 
-                     Grid.Row="0"
-                     Grid.Column="1" 
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Stretch"/>
-            <TextBlock 
-                Text="Amount" 
-                Grid.Row="1"
-                Grid.Column="0"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Margin="20,18,0,0"
-                FontSize="32"
-                />
-            <TextBox Name="TextBoxAmount" 
-                     Grid.Row="1"
-                     Grid.Column="1"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Stretch"
-                     InputScope="Number"/>
-            <TextBlock 
-                Text="Currency" 
-                Grid.Row="2"
-                Grid.Column="0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Margin="20,29,0,28"
-                FontSize="32"
-                />
-            <toolkit:ListPicker x:Name="ListPickerCurrency" 
-                     Grid.Row="2"
-                     Grid.Column="1"
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Stretch"
-                                />
-            <TextBlock 
-                Text="Length" 
-                Grid.Row="3"
-                Grid.Column="0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Margin="20,29,0,16"
-                FontSize="32"
-                />
-            <toolkit:ListPicker x:Name="ListPickerPeriod" 
-                     Grid.Row="3"
-                     Grid.Column="1" 
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Stretch" 
-                     >
-            </toolkit:ListPicker>
-            
-            <TextBlock 
-                Text="Start Day" 
-                Grid.Row="4"
-                Grid.Column="0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Margin="20,29,0,16"
-                FontSize="32"
-                />
-            <toolkit:ListPicker x:Name="ListPickerStartDay" 
-                     Grid.Row="4"
-                     Grid.Column="1"             
-                     VerticalAlignment="Top"
-                     HorizontalAlignment="Stretch" 
-                     >
-                <toolkit:ListPicker.FullModeItemTemplate>
-                    <DataTemplate x:Name="ListPickerFullItemTemplate">
-                        <TextBlock 
-                            FontSize="63"
-                            TextAlignment="Center"
-                            Text="{Binding}"/>
-                    </DataTemplate>
-                </toolkit:ListPicker.FullModeItemTemplate>
-            </toolkit:ListPicker>
-             <Button 
-                Name="ButtonSave" 
-                Content="Save" 
-                Grid.Row="5"
-                Grid.ColumnSpan="2"
-                Click="ButtonSave_Click_1"
-                FontSize="48"
-                Width="auto"
-                Margin="20,40,20,0"
-                Background="{Binding 
-                    Path=LocalizedResources.Blue, 
-                    Source={StaticResource LocalizedStrings}}"
-                BorderThickness="0"
-                />
-            
+            <StackPanel 
+                Grid.Row="0" 
+                Margin="12,17,0,28">
+                <TextBlock 
+                    Text="AddBudget" 
+                    Margin="9,-7,0,0" 
+                    Style="{StaticResource PhoneTextTitle1Style}"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
+            </StackPanel>
+
+            <!--ContentPanel - place additional content here-->
+            <Grid 
+                x:Name="ContentPanel" 
+                Grid.Row="1" 
+                Margin="12,0,12,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock 
+                    Text="Name" 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="20,18,0,0"
+                    FontSize="32"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
+                <TextBox 
+                    Name="TextBoxName" 
+                    Grid.Row="0"
+                    Grid.Column="1" 
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    BorderBrush="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
+                <TextBlock 
+                    Text="Amount" 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="20,18,0,0"
+                    FontSize="32"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
+                <TextBox 
+                    Name="TextBoxAmount" 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    InputScope="Number"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    BorderBrush="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                         />
+                <TextBlock 
+                    Text="Currency" 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="20,29,0,28"
+                    FontSize="32"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
+                <toolkit:ListPicker 
+                    x:Name="ListPickerCurrency" 
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    BorderBrush="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"/>
+                <TextBlock 
+                    Text="Length" 
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="20,29,0,16"
+                    FontSize="32"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
+                <toolkit:ListPicker 
+                    x:Name="ListPickerPeriod" 
+                    Grid.Row="3"
+                    Grid.Column="1" 
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    BorderBrush="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"/>
+
+                <TextBlock 
+                    Text="Start Day" 
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="20,29,0,16"
+                    FontSize="32"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
+                <toolkit:ListPicker 
+                    x:Name="ListPickerStartDay" 
+                    Grid.Row="4"
+                    Grid.Column="1"             
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    BorderBrush="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.SecondaryColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    Background="{Binding 
+                        Path=LocalizedResources.PrimaryColor, 
+                        Source={StaticResource LocalizedStrings}}">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate 
+                            x:Name="ListPickerFullItemTemplate">
+                            <TextBlock 
+                                FontSize="63"
+                                TextAlignment="Center"
+                                Text="{Binding}"
+                                Foreground="{Binding 
+                                    Path=LocalizedResources.ThirdColor, 
+                                    Source={StaticResource LocalizedStrings}}"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+                <Button 
+                    Name="ButtonSave" 
+                    Content="Save" 
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Click="ButtonSave_Click_1"
+                    FontSize="48"
+                    Width="auto"
+                    Margin="20,40,20,0"
+                    Background="{Binding 
+                        Path=LocalizedResources.SecondaryColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    BorderThickness="0"
+                    />
+
+            </Grid>
         </Grid>
     </Grid>
 
