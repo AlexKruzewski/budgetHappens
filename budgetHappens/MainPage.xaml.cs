@@ -47,8 +47,8 @@ namespace budgetHappens
         {
             if (e.PropertyName == "CurrentBudget")
             {
-                SetUpCurrentBudget();
                 SetupLists();
+                SetUpCurrentBudget();
 
                 HighLightSelectItem(ListBudgets);
             }
@@ -98,8 +98,18 @@ namespace budgetHappens
             SetupLists();
         }
 
+        private void ListPickerBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("aselection changed");
+            System.Diagnostics.Debug.WriteLine("--------------------------");
+            BudgetModel selectedBudget = (BudgetModel)ListPickerBudgets.SelectedItem;
+            currentSession.CurrentBudget = selectedBudget;
+        }
+
         private void ListBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("bselection changed");
+            System.Diagnostics.Debug.WriteLine("--------------------------");
             BudgetModel selectedBudget = (BudgetModel)ListBudgets.SelectedItem;
             currentSession.CurrentBudget = selectedBudget;
         }
@@ -134,7 +144,6 @@ namespace budgetHappens
                 currentSession.SaveSession();
             }
 
-            TextBlockBudgetName.Text = currentSession.CurrentBudget.Name;
             TextBlockCurrentAmount.Text = currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
             TextBlockPeriodAmount.Text = "of " + currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
             TextBlockDaysLeft.Text = currentSession.CurrentBudget.CurrentPeriod.DaysLeft.ToString("0") + " Days Left";
@@ -143,7 +152,8 @@ namespace budgetHappens
         private void ShowCaseNoBudgets()
         {
             StackPanelCurrent.Children.Remove(TextBlockDaysLeft);
-            StackPanelCurrent.Children.Remove(TextBlockBudgetName);
+            StackPanelCurrent.Children.Remove(TextBlockBudgets);
+            StackPanelCurrent.Children.Remove(ListPickerBudgets);
             StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
             StackPanelCurrent.Children.Remove(TextBlockPeriodAmount);
             StackPanelCurrent.Children.Remove(ButtonWithdraw);
@@ -158,7 +168,8 @@ namespace budgetHappens
         {
             ListBudgets.ItemsSource = currentSession.Budgets;
             ListBudgets.SelectedItem = currentSession.CurrentBudget;
-
+            ListPickerBudgets.ItemsSource = currentSession.Budgets;
+            ListPickerBudgets.SelectedItem = currentSession.CurrentBudget;
             if (currentSession.CurrentBudget != null)
             {
                 var withdrawalList = (from withdrawal in currentSession.CurrentBudget.CurrentPeriod.Withdrawals

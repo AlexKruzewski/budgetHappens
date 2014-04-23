@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -48,15 +49,45 @@
                     Width="454"
                     Name="StackPanelCurrent" 
                     Margin="0,0,0,-63">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Name="TextBlockBudgets" 
+                            Text="Budgets:"
+                            Grid.Column="0"
+                            FontSize="32" 
+                            VerticalAlignment="Center"
+                            Foreground="{Binding 
+                                Path=LocalizedResources.ThirdColor, 
+                                Source={StaticResource LocalizedStrings}}"/>
+                        
+                        <toolkit:ListPicker 
+                            x:Name="ListPickerBudgets"
+                            Grid.Column="1"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Stretch"
+                            Foreground="{Binding 
+                                Path=LocalizedResources.ThirdColor, 
+                                Source={StaticResource LocalizedStrings}}"
+                            BorderBrush="{Binding 
+                                Path=LocalizedResources.ThirdColor, 
+                                Source={StaticResource LocalizedStrings}}"
+                            SelectionChanged="ListPickerBudgets_SelectionChanged_1">
+                            <toolkit:ListPicker.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock
+                                    Text="{Binding Name}"/>
+                                    </StackPanel>
+
+                                </DataTemplate>
+                            </toolkit:ListPicker.ItemTemplate>
+                        </toolkit:ListPicker>
+                    </Grid>
                     
-                    <TextBlock 
-                        Name="TextBlockBudgetName" 
-                        Text="" 
-                        FontSize="32" 
-                        Height="121"
-                        Foreground="{Binding 
-                            Path=LocalizedResources.ThirdColor, 
-                            Source={StaticResource LocalizedStrings}}"/>
                     <TextBlock x:Name="TextBlockCurrentAmount" 
                                Text="" 
                                FontSize="96" 
