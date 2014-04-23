@@ -29,6 +29,14 @@ namespace budgetHappens.Models
             }
         }
 
+        public double DaysLeft
+        {
+            get
+            {
+                return (this.EndDate - DateTime.Now).TotalDays;
+            }
+        }
+
         public ObservableCollection<WithdrawalModel> Withdrawals { get; set; }
 
         #endregion
