@@ -36,8 +36,6 @@ namespace budgetHappens
 
             if (currentSession == null)
                 currentSession = new Session();
-
-            Loaded += MainPage_Loaded;
         }
         #endregion
 
@@ -47,10 +45,8 @@ namespace budgetHappens
         {
             if (e.PropertyName == "CurrentBudget")
             {
-                SetupLists();
                 SetUpCurrentBudget();
-
-                HighLightSelectItem(ListBudgets);
+                SetupLists();
             }
         }
 
@@ -62,13 +58,6 @@ namespace budgetHappens
                 SetUpCurrentBudget();
 
             SetupLists();
-        }
-
-        void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            if (currentSession.Budgets.Count > 0)
-                HighLightSelectItem(ListBudgets);
         }
 
         private void AddBudgetButton_Click_1(object sender, EventArgs e)
@@ -100,17 +89,7 @@ namespace budgetHappens
 
         private void ListPickerBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("aselection changed");
-            System.Diagnostics.Debug.WriteLine("--------------------------");
             BudgetModel selectedBudget = (BudgetModel)ListPickerBudgets.SelectedItem;
-            currentSession.CurrentBudget = selectedBudget;
-        }
-
-        private void ListBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("bselection changed");
-            System.Diagnostics.Debug.WriteLine("--------------------------");
-            BudgetModel selectedBudget = (BudgetModel)ListBudgets.SelectedItem;
             currentSession.CurrentBudget = selectedBudget;
         }
 
@@ -126,6 +105,7 @@ namespace budgetHappens
 
         private void SetUpCurrentBudget()
         {
+
             if (currentSession.CurrentBudget == null)
                 currentSession.CurrentBudget = currentSession.GetDefaultOrNextBudget();
 
@@ -166,10 +146,9 @@ namespace budgetHappens
 
         private void SetupLists()
         {
-            ListBudgets.ItemsSource = currentSession.Budgets;
-            ListBudgets.SelectedItem = currentSession.CurrentBudget;
             ListPickerBudgets.ItemsSource = currentSession.Budgets;
             ListPickerBudgets.SelectedItem = currentSession.CurrentBudget;
+            ListPickerBudgets.SelectionChanged += ListPickerBudgets_SelectionChanged_1;
             if (currentSession.CurrentBudget != null)
             {
                 var withdrawalList = (from withdrawal in currentSession.CurrentBudget.CurrentPeriod.Withdrawals
