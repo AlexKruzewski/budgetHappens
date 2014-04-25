@@ -132,8 +132,7 @@ namespace budgetHappens
         private void ShowCaseNoBudgets()
         {
             StackPanelCurrent.Children.Remove(TextBlockDaysLeft);
-            StackPanelCurrent.Children.Remove(TextBlockBudgets);
-            StackPanelCurrent.Children.Remove(ListPickerBudgets);
+            StackPanelCurrent.Children.Remove(GridBudgets);
             StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
             StackPanelCurrent.Children.Remove(TextBlockPeriodAmount);
             StackPanelCurrent.Children.Remove(ButtonWithdraw);
