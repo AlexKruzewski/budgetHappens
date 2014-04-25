@@ -126,6 +126,7 @@
                     />
                 <Button
                     Name="ButtonRemoveWithdrawal"
+                    Click="ButtonRemoveWithdrawal_Click_1"
                     Grid.Row="2"
                     Grid.Column="1"
                     Content="Delete"
