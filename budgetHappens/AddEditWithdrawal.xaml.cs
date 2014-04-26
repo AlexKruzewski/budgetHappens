@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using budgetHappens.ViewModels;
 using budgetHappens.Models;
+using budgetHappens.Repositories;
+using System.Windows.Media;
 
 namespace budgetHappens
 {
@@ -21,7 +23,7 @@ namespace budgetHappens
 
         Session currentSession = null;
         WithdrawalModel selectedWithdrawal = null;
-
+        bool valuesValidate = true;
         #endregion
 
         #region Constructors
@@ -60,22 +62,25 @@ namespace budgetHappens
 
         private void ButtonAddEditWithdrawal_Click_1(object sender, RoutedEventArgs e)
         {
-            PeriodModel currentPeriod = currentSession.CurrentBudget.CurrentPeriod;
-            decimal amount = decimal.Parse(TextBoxAmount.Text);
-
-            if (selectedWithdrawal != null)
+            if (valuesValidate)
             {
-                selectedWithdrawal.StringAmount = currentSession.CurrentBudget.Currency + amount.ToString("0.00");
-                selectedWithdrawal.Amount = amount;
-                selectedWithdrawal.Description = TextBoxDescription.Text;
-            }
-            else
-            {
-                currentPeriod.Withdrawals.Add(new WithdrawalModel(amount, TextBoxDescription.Text, currentSession.CurrentBudget.Currency));
-            }
+                PeriodModel currentPeriod = currentSession.CurrentBudget.CurrentPeriod;
+                decimal amount = decimal.Parse(TextBoxAmount.Text);
 
-            currentSession.SaveSession();
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                if (selectedWithdrawal != null)
+                {
+                    selectedWithdrawal.StringAmount = currentSession.CurrentBudget.Currency + amount.ToString("0.00");
+                    selectedWithdrawal.Amount = amount;
+                    selectedWithdrawal.Description = TextBoxDescription.Text;
+                }
+                else
+                {
+                    currentPeriod.Withdrawals.Add(new WithdrawalModel(amount, TextBoxDescription.Text, currentSession.CurrentBudget.Currency));
+                }
+
+                currentSession.SaveSession();
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            }
         }
 
         private void ButtonRemoveWithdrawal_Click_1(object sender, RoutedEventArgs e)
@@ -87,8 +92,35 @@ namespace budgetHappens
 
         #endregion
 
-        #region Methods
+        private void TextBoxAmount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
 
+            ShowValidationText(valuesValidate);
+        }
+
+        private void TextBoxAmount_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
+
+            ShowValidationText(valuesValidate);
+        }
+
+        #region Methods
+        private void ShowValidationText(bool validates)
+        {
+            if (!validates)
+            {
+                TextBlockValidationAmount.Visibility = Visibility.Visible;
+                TextBoxAmount.Background = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                TextBlockValidationAmount.Visibility = Visibility.Collapsed;
+                TextBoxAmount.Background = new SolidColorBrush(Colors.White);
+            }
+
+        }
         #endregion
 
         

@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using budgetHappens.ViewModels;
 using budgetHappens.Repositories;
 using budgetHappens.Models;
+using System.Windows.Media;
 namespace budgetHappens
 {
     public partial class AddBudget : PhoneApplicationPage
@@ -85,9 +86,15 @@ namespace budgetHappens
         private void ShowValidationText(bool validates)
         {
             if (!validates)
+            {
                 TextBlockValidationAmount.Visibility = Visibility.Visible;
+                TextBoxAmount.Background = new SolidColorBrush(Colors.Red);
+            }
             else
+            {
                 TextBlockValidationAmount.Visibility = Visibility.Collapsed;
+                TextBoxAmount.Background = new SolidColorBrush(Colors.White);
+            }
 
         }
         #endregion
