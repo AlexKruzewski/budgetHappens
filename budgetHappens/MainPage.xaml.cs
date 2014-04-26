@@ -127,6 +127,8 @@ namespace budgetHappens
             TextBlockCurrentAmount.Text = currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
             TextBlockPeriodAmount.Text = "of " + currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
             TextBlockDaysLeft.Text = currentSession.CurrentBudget.CurrentPeriod.DaysLeft.ToString("0") + " Days Left";
+            if (currentSession.CurrentBudget.CurrentPeriod.CurrentAmount < 0)
+                TextBlockCurrentAmount.Foreground = new SolidColorBrush(Colors.Red);
         }
 
         private void ShowCaseNoBudgets()
