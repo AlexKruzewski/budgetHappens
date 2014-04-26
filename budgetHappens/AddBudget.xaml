@@ -108,6 +108,8 @@
                     Grid.Column="1"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Stretch"
+                    KeyDown="TextBoxAmount_KeyDown"
+                    TextChanged="TextBoxAmount_TextChanged"
                     InputScope="Number"
                     Foreground="{Binding 
                         Path=LocalizedResources.ThirdColor, 
@@ -116,6 +118,16 @@
                         Path=LocalizedResources.ThirdColor, 
                         Source={StaticResource LocalizedStrings}}" Height="72"
                          />
+                <TextBlock
+                    Name="TextBlockValidationAmount"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Foreground="Red"
+                    Text="This value is not a number"
+                    Visibility="Collapsed"
+                    VerticalAlignment="Bottom"
+                    Margin="216,0,0,72" 
+                    Grid.RowSpan="2"/>
                 <TextBlock 
                     Text="Currency" 
                     Grid.Row="2"

@@ -59,5 +59,28 @@ namespace budgetHappens.Repositories
             return;
         }
 
+        public static bool ValidateValue(object value, DataType dataType)
+        {
+            bool validates = true;
+
+            switch (dataType)
+            {
+                case DataType.Int:
+                    int tempInt;
+                    validates = int.TryParse(value.ToString(), out tempInt);
+                    break;
+                case DataType.Decimal:
+                    decimal tempDecimal;
+                    validates = decimal.TryParse(value.ToString(), out tempDecimal);
+                    break;
+                case DataType.Date:
+                    DateTime tempDate;
+                    validates = DateTime.TryParse(value.ToString(), out tempDate);
+                    break;
+            }
+
+            return validates;
+        }
+
     }
 }
