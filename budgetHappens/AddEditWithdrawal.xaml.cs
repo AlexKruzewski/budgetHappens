@@ -90,8 +90,6 @@ namespace budgetHappens
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
-        #endregion
-
         private void TextBoxAmount_TextChanged(object sender, TextChangedEventArgs e)
         {
             valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
@@ -105,6 +103,9 @@ namespace budgetHappens
 
             ShowValidationText(valuesValidate);
         }
+
+        #endregion
+
 
         #region Methods
         private void ShowValidationText(bool validates)
@@ -122,10 +123,5 @@ namespace budgetHappens
 
         }
         #endregion
-
-        
-        
-
-       
     }
 }
