@@ -28,7 +28,6 @@ namespace budgetHappens
         {
             InitializeComponent();
 
-            ListPickerPeriod.ItemsSource = GeneralHelpers.GetNames<PeriodLength>();
             ListPickerCurrency.ItemsSource = GeneralHelpers.GetCurrencies();
             ListPickerStartDay.ItemsSource = GeneralHelpers.GetNames<DayOfWeek>();
         }
@@ -48,8 +47,7 @@ namespace budgetHappens
                 newBudget.AmountPerPeriod = decimal.Parse(TextBoxAmount.Text);
                 newBudget.Currency = ListPickerCurrency.SelectedItem.ToString();
 
-                PeriodLength periodLength = (PeriodLength)Enum.Parse(typeof(PeriodLength), ListPickerPeriod.SelectedItem.ToString());
-                newBudget.PeriodLength = periodLength;
+                newBudget.PeriodLength = PeriodLength.Weekly;
 
                 newBudget.BudgetStartDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), ListPickerStartDay.SelectedIndex.ToString());
                 newBudget.CurrentPeriod = new PeriodModel(newBudget.BudgetStartDay, newBudget.AmountPerPeriod, newBudget.PeriodLength);

@@ -39,6 +39,7 @@ namespace budgetHappens.Repositories
             List<string> currencies = new List<string>();
             currencies.Add("£");
             currencies.Add("$");
+            currencies.Add("€");
             return currencies;
         }
 

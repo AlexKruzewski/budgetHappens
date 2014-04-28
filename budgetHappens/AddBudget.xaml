@@ -152,34 +152,10 @@
                     BorderBrush="{Binding 
                         Path=LocalizedResources.ThirdColor, 
                         Source={StaticResource LocalizedStrings}}"/>
-                <TextBlock 
-                    Text="Length" 
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    Margin="20,18,0,0"
-                    FontSize="32"
-                    Foreground="{Binding 
-                        Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}" 
-                    />
-                <toolkit:ListPicker 
-                    x:Name="ListPickerPeriod" 
-                    Grid.Row="3"
-                    Grid.Column="1" 
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Stretch"
-                    Foreground="{Binding 
-                        Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    BorderBrush="{Binding 
-                        Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}"/>
 
                 <TextBlock 
                     Text="Start Day" 
-                    Grid.Row="4"
+                    Grid.Row="3"
                     Grid.Column="0"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Left"
@@ -190,7 +166,7 @@
                         Source={StaticResource LocalizedStrings}}"/>
                 <toolkit:ListPicker 
                     x:Name="ListPickerStartDay" 
-                    Grid.Row="4"
+                    Grid.Row="3"
                     Grid.Column="1"             
                     VerticalAlignment="Top"
                     HorizontalAlignment="Stretch"
@@ -219,7 +195,7 @@
                 <Button 
                     Name="ButtonSave" 
                     Content="Save" 
-                    Grid.Row="5"
+                    Grid.Row="4"
                     Grid.ColumnSpan="2"
                     Click="ButtonSave_Click_1"
                     FontSize="48"
