@@ -62,6 +62,7 @@ namespace budgetHappens
 
         private void ButtonAddEditWithdrawal_Click_1(object sender, RoutedEventArgs e)
         {
+            ValidateAmountField();
             if (valuesValidate)
             {
                 PeriodModel currentPeriod = currentSession.CurrentBudget.CurrentPeriod;
@@ -94,23 +95,22 @@ namespace budgetHappens
         {
             valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
 
-            ShowValidationText(valuesValidate);
+            ValidateAmountField();
         }
 
         private void TextBoxAmount_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
-
-            ShowValidationText(valuesValidate);
+            ValidateAmountField();
         }
 
         #endregion
 
 
         #region Methods
-        private void ShowValidationText(bool validates)
+        private void ValidateAmountField()
         {
-            if (!validates)
+            valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
+            if (!valuesValidate)
             {
                 TextBlockValidationAmount.Visibility = Visibility.Visible;
                 TextBoxAmount.Background = new SolidColorBrush(Colors.Red);
