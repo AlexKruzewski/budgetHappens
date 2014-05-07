@@ -17,7 +17,6 @@ namespace budgetHappens
         #region Attributes
 
         List<QuickWithdrawModel> Amounts = new List<QuickWithdrawModel>();
-        Session currentSession = null;
 
         #endregion
 
@@ -31,7 +30,7 @@ namespace budgetHappens
         #region Methods
         private void PopulateData()
         {
-            string currencyIcon = currentSession.CurrentBudget.Currency;
+            string currencyIcon = App.CurrentSession.CurrentBudget.Currency;
             Amounts.Add(new QuickWithdrawModel() { Amount = 1.00M, StringAmount = currencyIcon + "1.00" });
             Amounts.Add(new QuickWithdrawModel() { Amount = 1.50M, StringAmount = currencyIcon + "1.50" });
             Amounts.Add(new QuickWithdrawModel() { Amount = 2.00M, StringAmount = currencyIcon + "2.00" });
@@ -48,8 +47,7 @@ namespace budgetHappens
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            currentSession = (Session)PhoneApplicationService.Current.State["CurrentSession"];
-
+          
             if(Amounts.Count == 0)
                 PopulateData();
 
@@ -65,9 +63,9 @@ namespace budgetHappens
 
             QuickWithdrawModel selectedModel = list.SelectedItem as QuickWithdrawModel;
 
-            currentSession.CurrentBudget.CurrentPeriod.Withdrawals.Add(new WithdrawalModel(selectedModel.Amount, "Quick Withdrawal", currentSession.CurrentBudget.Currency));
+            App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals.Add(new WithdrawalModel(selectedModel.Amount, "Quick Withdrawal", App.CurrentSession.CurrentBudget.Currency));
 
-            currentSession.SaveSession();
+            App.CurrentSession.SaveSession();
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
 
         }

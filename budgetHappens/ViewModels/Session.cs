@@ -59,9 +59,6 @@ namespace budgetHappens.ViewModels
         public Session()
         {
             this.populateBudgets();
-            this.CurrentBudget = this.GetDefaultOrNextBudget();
-
-            PhoneApplicationService.Current.State["CurrentSession"] = this;
         }
 
         #endregion
@@ -119,7 +116,7 @@ namespace budgetHappens.ViewModels
             settings["Budgets"] = data;
             settings.Save();
 
-            PhoneApplicationService.Current.State["CurrentSession"] = this;
+            //PhoneApplicationService.Current.State["CurrentSession"] = this;
         }
 
         internal void AddBudget(BudgetModel newBudget)

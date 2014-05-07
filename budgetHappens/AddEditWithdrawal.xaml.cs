@@ -21,7 +21,6 @@ namespace budgetHappens
 
         #region Attributes
 
-        Session currentSession = null;
         WithdrawalModel selectedWithdrawal = null;
         bool valuesValidate = true;
         #endregion
@@ -39,13 +38,12 @@ namespace budgetHappens
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            currentSession = (Session)PhoneApplicationService.Current.State["CurrentSession"];
             string value = "";
 
             if (NavigationContext.QueryString.TryGetValue("Edit", out value))
             {
                 selectedWithdrawal = (WithdrawalModel)PhoneApplicationService.Current.State["SelectedWithdrawal"];
-                selectedWithdrawal = (from w in currentSession.CurrentBudget.CurrentPeriod.Withdrawals
+                selectedWithdrawal = (from w in App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals
                                       where w.Equals(selectedWithdrawal)
                                       select w).FirstOrDefault();
 
@@ -65,29 +63,29 @@ namespace budgetHappens
             ValidateAmountField();
             if (valuesValidate)
             {
-                PeriodModel currentPeriod = currentSession.CurrentBudget.CurrentPeriod;
+                PeriodModel currentPeriod = App.CurrentSession.CurrentBudget.CurrentPeriod;
                 decimal amount = decimal.Parse(TextBoxAmount.Text);
 
                 if (selectedWithdrawal != null)
                 {
-                    selectedWithdrawal.StringAmount = currentSession.CurrentBudget.Currency + amount.ToString("0.00");
+                    selectedWithdrawal.StringAmount = App.CurrentSession.CurrentBudget.Currency + amount.ToString("0.00");
                     selectedWithdrawal.Amount = amount;
                     selectedWithdrawal.Description = TextBoxDescription.Text;
                 }
                 else
                 {
-                    currentPeriod.Withdrawals.Add(new WithdrawalModel(amount, TextBoxDescription.Text, currentSession.CurrentBudget.Currency));
+                    currentPeriod.Withdrawals.Add(new WithdrawalModel(amount, TextBoxDescription.Text, App.CurrentSession.CurrentBudget.Currency));
                 }
 
-                currentSession.SaveSession();
+                App.CurrentSession.SaveSession();
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
         }
 
         private void ButtonRemoveWithdrawal_Click_1(object sender, RoutedEventArgs e)
         {
-            currentSession.DeleteWithdrawal(currentSession.CurrentBudget, this.selectedWithdrawal);
-            currentSession.SaveSession();
+            App.CurrentSession.DeleteWithdrawal(App.CurrentSession.CurrentBudget, this.selectedWithdrawal);
+            App.CurrentSession.SaveSession();
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 

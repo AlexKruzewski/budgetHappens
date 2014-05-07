@@ -24,8 +24,6 @@ namespace budgetHappens
 
         #region Attributes
 
-        public static Session currentSession = null;
-
         #endregion
 
         #region Constructors
@@ -33,9 +31,7 @@ namespace budgetHappens
         public MainPage()
         {
             InitializeComponent();
-
-            if (currentSession == null)
-                currentSession = new Session();
+            App.CurrentSession.PropertyChanged += CurrentSession_PropertyChanged;
         }
         #endregion
 
@@ -45,6 +41,7 @@ namespace budgetHappens
         {
             if (e.PropertyName == "CurrentBudget")
             {
+                System.Diagnostics.Debug.WriteLine("Budget has changed");
                 SetUpCurrentBudget();
                 SetupLists();
             }
@@ -52,11 +49,7 @@ namespace budgetHappens
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (currentSession.CurrentBudget != null)
-                currentSession.PropertyChanged += CurrentSession_PropertyChanged;
-            else
-                SetUpCurrentBudget();
-
+            SetUpCurrentBudget();
             SetupLists();
         }
 
@@ -77,11 +70,11 @@ namespace budgetHappens
 
         void DeleteCurrentBudget_Click(object sender, EventArgs e)
         {
-            currentSession.DeleteBudget(currentSession.CurrentBudget);
-            currentSession.SaveSession();
-            currentSession.CurrentBudget = currentSession.GetDefaultOrNextBudget();
+            App.CurrentSession.DeleteBudget(App.CurrentSession.CurrentBudget);
+            App.CurrentSession.SaveSession();
+            App.CurrentSession.CurrentBudget = App.CurrentSession.GetDefaultOrNextBudget();
 
-            if (currentSession.CurrentBudget == null)
+            if (App.CurrentSession.CurrentBudget == null)
                 SetUpCurrentBudget();
 
             SetupLists();
@@ -89,8 +82,10 @@ namespace budgetHappens
 
         private void ListPickerBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine(App.CurrentSession.CurrentBudget.Name);
             BudgetModel selectedBudget = (BudgetModel)ListPickerBudgets.SelectedItem;
-            currentSession.CurrentBudget = selectedBudget;
+            App.CurrentSession.CurrentBudget = selectedBudget;
+            System.Diagnostics.Debug.WriteLine(App.CurrentSession.CurrentBudget.Name);
         }
 
         private void ListWithdrawals_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -106,10 +101,10 @@ namespace budgetHappens
         private void SetUpCurrentBudget()
         {
 
-            if (currentSession.CurrentBudget == null)
-                currentSession.CurrentBudget = currentSession.GetDefaultOrNextBudget();
+            if (App.CurrentSession.CurrentBudget == null)
+                App.CurrentSession.CurrentBudget = App.CurrentSession.GetDefaultOrNextBudget();
 
-            if (currentSession.CurrentBudget != null)
+            if (App.CurrentSession.CurrentBudget != null)
                 ShowCaseBugetsAvailable();
             else
                 ShowCaseNoBudgets();
@@ -118,16 +113,16 @@ namespace budgetHappens
 
         private void ShowCaseBugetsAvailable()
         {
-            if (!currentSession.CurrentBudget.IsPeriodValid())
+            if (!App.CurrentSession.CurrentBudget.IsPeriodValid())
             {
-                currentSession.CurrentBudget.CurrentPeriod = currentSession.CurrentBudget.StartNewPeriod();
-                currentSession.SaveSession();
+                App.CurrentSession.CurrentBudget.CurrentPeriod = App.CurrentSession.CurrentBudget.StartNewPeriod();
+                App.CurrentSession.SaveSession();
             }
 
-            TextBlockCurrentAmount.Text = currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
-            TextBlockPeriodAmount.Text = "of " + currentSession.CurrentBudget.Currency + currentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
-            TextBlockDaysLeft.Text = currentSession.CurrentBudget.CurrentPeriod.DaysLeft.ToString("0") + " Days Left";
-            if (currentSession.CurrentBudget.CurrentPeriod.CurrentAmount < 0)
+            TextBlockCurrentAmount.Text = App.CurrentSession.CurrentBudget.Currency + App.CurrentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
+            TextBlockPeriodAmount.Text = "of " + App.CurrentSession.CurrentBudget.Currency + App.CurrentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
+            TextBlockDaysLeft.Text = App.CurrentSession.CurrentBudget.CurrentPeriod.DaysLeft.ToString("0") + " Days Left";
+            if (App.CurrentSession.CurrentBudget.CurrentPeriod.CurrentAmount < 0)
                 TextBlockCurrentAmount.Foreground = new SolidColorBrush(Colors.Red);
         }
 
@@ -147,12 +142,12 @@ namespace budgetHappens
 
         private void SetupLists()
         {
-            ListPickerBudgets.ItemsSource = currentSession.Budgets;
-            ListPickerBudgets.SelectedItem = currentSession.CurrentBudget;
+            ListPickerBudgets.ItemsSource = App.CurrentSession.Budgets;
+            ListPickerBudgets.SelectedItem = App.CurrentSession.CurrentBudget;
             ListPickerBudgets.SelectionChanged += ListPickerBudgets_SelectionChanged_1;
-            if (currentSession.CurrentBudget != null)
+            if (App.CurrentSession.CurrentBudget != null)
             {
-                var withdrawalList = (from withdrawal in currentSession.CurrentBudget.CurrentPeriod.Withdrawals
+                var withdrawalList = (from withdrawal in App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals
                                      select withdrawal).OrderByDescending(x=>x.WithdrawalDate).ToList();
 
                 ListWithdrawals.ItemsSource = withdrawalList;

@@ -14,21 +14,21 @@ namespace budgetHappens
 {
     public partial class App : Application
     {
-        private static Session viewModel = null;
+        private static Session currentSession = null;
 
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
         /// <returns>The MainViewModel object.</returns>
-        public static Session ViewModel
+        public static Session CurrentSession
         {
             get
             {
                 // Delay creation of the view model until necessary
-                if (viewModel == null)
-                    viewModel = new Session();
+                if (currentSession == null)
+                    currentSession = new Session();
 
-                return viewModel;
+                return currentSession;
             }
         }
 
@@ -80,30 +80,28 @@ namespace budgetHappens
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            CurrentSession.GetDefaultOrNextBudget();
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            // Ensure that application state is restored appropriately
-            /*if (!App.ViewModel.IsDataLoaded)
-            {
-                App.ViewModel.LoadData();
-            }*/
+
         }
 
         // Code to execute when the application is deactivated (sent to background)
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            CurrentSession.SaveSession();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            // Ensure that required application state is persisted here.
+            CurrentSession.SaveSession();
         }
 
         // Code to execute if a navigation fails

@@ -52,13 +52,11 @@ namespace budgetHappens
                 newBudget.BudgetStartDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), ListPickerStartDay.SelectedIndex.ToString());
                 newBudget.CurrentPeriod = new PeriodModel(newBudget.BudgetStartDay, newBudget.AmountPerPeriod, newBudget.PeriodLength);
 
-                Session currentSession = (Session)PhoneApplicationService.Current.State["CurrentSession"];
+                newBudget.Default = (App.CurrentSession.Budgets.Count() == 0) ? true : false;
+                App.CurrentSession.Budgets.Add(newBudget);
+                App.CurrentSession.CurrentBudget = newBudget;
 
-                newBudget.Default = (currentSession.Budgets.Count() == 0) ? true : false;
-                currentSession.Budgets.Add(newBudget);
-                currentSession.CurrentBudget = newBudget;
-
-                currentSession.SaveSession();
+                App.CurrentSession.SaveSession();
 
                 NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
