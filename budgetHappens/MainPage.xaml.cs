@@ -43,14 +43,15 @@ namespace budgetHappens
             {
                 System.Diagnostics.Debug.WriteLine("Budget has changed");
                 SetUpCurrentBudget();
-                SetupLists();
+                SetupWithdrawalList();
             }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SetUpCurrentBudget();
-            SetupLists();
+            SetupBudgetList();
+            SetupWithdrawalList();
         }
 
         private void AddBudgetButton_Click_1(object sender, EventArgs e)
@@ -77,7 +78,8 @@ namespace budgetHappens
             if (App.CurrentSession.CurrentBudget == null)
                 SetUpCurrentBudget();
 
-            SetupLists();
+            SetupBudgetList();
+            SetupWithdrawalList();
         }
 
         private void ListPickerBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -140,11 +142,8 @@ namespace budgetHappens
             ButtonAddBuget.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private void SetupLists()
+        private void SetupWithdrawalList()
         {
-            ListPickerBudgets.ItemsSource = App.CurrentSession.Budgets;
-            ListPickerBudgets.SelectedItem = App.CurrentSession.CurrentBudget;
-            ListPickerBudgets.SelectionChanged += ListPickerBudgets_SelectionChanged_1;
             if (App.CurrentSession.CurrentBudget != null)
             {
                 var withdrawalList = (from withdrawal in App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals
@@ -155,6 +154,13 @@ namespace budgetHappens
             else
                 ListWithdrawals.ItemsSource = new List<WithdrawalModel>();
 
+        }
+
+        private void SetupBudgetList()
+        {
+            ListPickerBudgets.ItemsSource = App.CurrentSession.Budgets;
+            ListPickerBudgets.SelectedItem = App.CurrentSession.CurrentBudget;
+            ListPickerBudgets.SelectionChanged += ListPickerBudgets_SelectionChanged_1;
         }
 
         public void HighLightSelectItem(LongListSelector selectedList)
