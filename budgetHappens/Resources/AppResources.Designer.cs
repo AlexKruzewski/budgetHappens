@@ -61,7 +61,7 @@ namespace budgetHappens.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to budgetHappens.
+        ///   Looks up a localized string similar to Budget Happens.
         /// </summary>
         public static string ApplicationTitle {
             get {
