@@ -159,20 +159,6 @@ namespace budgetHappens
             ListPickerBudgets.SelectionChanged += ListPickerBudgets_SelectionChanged_1;
         }
 
-        public void HighLightSelectItem(LongListSelector selectedList)
-        {
-            List<UserControl> listItems = new List<UserControl>();
-            GeneralHelpers.GetItemsRecursive<UserControl>(selectedList, ref listItems);
-
-            foreach (var item in listItems)
-            {
-                if (selectedList.SelectedItem.Equals(item.DataContext))
-                    VisualStateManager.GoToState(item, "Selected", true);
-                else
-                    VisualStateManager.GoToState(item, "Normal", true);
-            }
-        }
-
         #endregion
 
     }

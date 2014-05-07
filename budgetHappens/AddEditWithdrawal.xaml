@@ -39,7 +39,9 @@
             </Grid.RowDefinitions>
 
             <!--TitlePanel contains the name of the application and page title-->
-            <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <StackPanel 
+                Grid.Row="0" 
+                Margin="12,17,0,28">
                 <TextBlock 
                     Text="Withdraw" 
                     Margin="9,-7,0,0" 
@@ -50,7 +52,10 @@
             </StackPanel>
 
             <!--ContentPanel - place additional content here-->
-            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid 
+                x:Name="ContentPanel" 
+                Grid.Row="1" 
+                Margin="12,0,12,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -72,21 +77,21 @@
                             Path=LocalizedResources.ThirdColor, 
                             Source={StaticResource LocalizedStrings}}"
                     />
-                <TextBox Name="TextBoxAmount" 
-                         Grid.Row="0" 
-                         Grid.Column="1"
-                         HorizontalAlignment="Stretch" 
-                         VerticalAlignment="Top"
-                         InputScope="Number"
-                         TextChanged="TextBoxAmount_TextChanged"
-                         KeyDown="TextBoxAmount_KeyDown"
-                         Foreground="{Binding 
-                            Path=LocalizedResources.ThirdColor, 
-                            Source={StaticResource LocalizedStrings}}"
-                         BorderBrush="{Binding 
-                            Path=LocalizedResources.ThirdColor, 
-                            Source={StaticResource LocalizedStrings}}"
-                         />
+                <TextBox 
+                    Name="TextBoxAmount" 
+                    Grid.Row="0" 
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Top"
+                    InputScope="Number"
+                    TextChanged="TextBoxAmount_TextChanged"
+                    KeyDown="TextBoxAmount_KeyDown"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    BorderBrush="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"/>
                 <TextBlock
                     Name="TextBlockValidationAmount"
                     Grid.Row="0"
