@@ -19,7 +19,7 @@ namespace budgetHappens
         #endregion
 
         #region Attributes
-        bool valuesValidate = true;
+        bool _valuesValidate = true;
         #endregion
 
         #region Constructors
@@ -39,7 +39,7 @@ namespace budgetHappens
         private void ButtonSave_Click_1(object sender, RoutedEventArgs e)
         {
             ValidateAmountField();
-            if(valuesValidate)
+            if(_valuesValidate)
             {
                 BudgetModel newBudget = new BudgetModel();
 
@@ -78,8 +78,8 @@ namespace budgetHappens
         #region Methods
         private void ValidateAmountField()
         {
-            valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
-            if (!valuesValidate)
+            _valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
+            if (!_valuesValidate)
             {
                 TextBlockValidationAmount.Visibility = Visibility.Visible;
                 TextBoxAmount.Background = new SolidColorBrush(Colors.Red);

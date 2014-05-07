@@ -37,11 +37,10 @@ namespace budgetHappens
 
         #region Event Handlers
 
-        void CurrentSession_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void CurrentSession_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "CurrentBudget")
             {
-                System.Diagnostics.Debug.WriteLine("Budget has changed");
                 SetUpCurrentBudget();
                 SetupWithdrawalList();
             }
@@ -59,23 +58,18 @@ namespace budgetHappens
             NavigationService.Navigate(new Uri("/AddBudget.xaml", UriKind.Relative));
         }
 
-        void AddWithdrawalButton_Click(object sender, EventArgs e)
+        private void AddWithdrawalButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AddQuickWithdraw.xaml", UriKind.Relative));
         }
 
-        void addNewWithdrawalButton_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml", UriKind.Relative));
-        }
-
-        void DeleteCurrentBudget_Click(object sender, EventArgs e)
+        private void DeleteCurrentBudget_Click(object sender, EventArgs e)
         {
             App.CurrentSession.DeleteBudget(App.CurrentSession.CurrentBudget);
             App.CurrentSession.SaveSession();
             App.CurrentSession.CurrentBudget = App.CurrentSession.GetDefaultOrNextBudget();
 
-            if (App.CurrentSession.CurrentBudget == null)
+            if(App.CurrentSession.CurrentBudget == null)
                 SetUpCurrentBudget();
 
             SetupBudgetList();
@@ -120,8 +114,12 @@ namespace budgetHappens
             }
 
             TextBlockCurrentAmount.Text = App.CurrentSession.CurrentBudget.Currency + App.CurrentSession.CurrentBudget.CurrentPeriod.CurrentAmount.ToString("0.00");
-            TextBlockPeriodAmount.Text = "of " + App.CurrentSession.CurrentBudget.Currency + App.CurrentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00") + " left";
-            TextBlockDaysLeft.Text = App.CurrentSession.CurrentBudget.CurrentPeriod.DaysLeft.ToString("0") + " Days Left";
+            TextBlockPeriodAmount.Text = String.Format(
+                                            "of {0}{1} left", 
+                                            App.CurrentSession.CurrentBudget.Currency, 
+                                            App.CurrentSession.CurrentBudget.CurrentPeriod.PeriodAmount.ToString("0.00"));
+            TextBlockDaysLeft.Text = String.Format("{0} Days Left", App.CurrentSession.CurrentBudget.CurrentPeriod.DaysLeft.ToString("0"));
+
             if (App.CurrentSession.CurrentBudget.CurrentPeriod.CurrentAmount < 0)
                 TextBlockCurrentAmount.Foreground = new SolidColorBrush(Colors.Red);
         }

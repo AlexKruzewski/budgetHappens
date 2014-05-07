@@ -16,7 +16,7 @@ namespace budgetHappens
     {
         #region Attributes
 
-        List<QuickWithdrawModel> Amounts = new List<QuickWithdrawModel>();
+        private List<QuickWithdrawModel> _amounts = new List<QuickWithdrawModel>();
 
         #endregion
 
@@ -31,15 +31,15 @@ namespace budgetHappens
         private void PopulateData()
         {
             string currencyIcon = App.CurrentSession.CurrentBudget.Currency;
-            Amounts.Add(new QuickWithdrawModel() { Amount = 1.00M, StringAmount = currencyIcon + "1.00" });
-            Amounts.Add(new QuickWithdrawModel() { Amount = 1.50M, StringAmount = currencyIcon + "1.50" });
-            Amounts.Add(new QuickWithdrawModel() { Amount = 2.00M, StringAmount = currencyIcon + "2.00" });
-            Amounts.Add(new QuickWithdrawModel() { Amount = 2.50M, StringAmount = currencyIcon + "2.50" });
-            Amounts.Add(new QuickWithdrawModel() { Amount = 5.00M, StringAmount = currencyIcon + "5.00" });
-            Amounts.Add(new QuickWithdrawModel() { Amount = 10.00M, StringAmount = currencyIcon + "10.00" });
-            Amounts.Add(new QuickWithdrawModel() { Amount = 15.00M, StringAmount = currencyIcon + "15.00" });
-            Amounts.Add(new QuickWithdrawModel() { Amount = 20.00M, StringAmount = currencyIcon + "20.00" });
-            Amounts.Add(new QuickWithdrawModel() { Amount = 25.00M, StringAmount = currencyIcon + "25.00" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 1.00M, StringAmount = currencyIcon + "1.00" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 1.50M, StringAmount = currencyIcon + "1.50" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 2.00M, StringAmount = currencyIcon + "2.00" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 2.50M, StringAmount = currencyIcon + "2.50" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 5.00M, StringAmount = currencyIcon + "5.00" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 10.00M, StringAmount = currencyIcon + "10.00" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 15.00M, StringAmount = currencyIcon + "15.00" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 20.00M, StringAmount = currencyIcon + "20.00" });
+            _amounts.Add(new QuickWithdrawModel() { Amount = 25.00M, StringAmount = currencyIcon + "25.00" });
         }
         #endregion
 
@@ -48,10 +48,10 @@ namespace budgetHappens
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
           
-            if(Amounts.Count == 0)
+            if(_amounts.Count == 0)
                 PopulateData();
 
-            ListQuickWithdraws.ItemsSource = Amounts;
+            ListQuickWithdraws.ItemsSource = _amounts;
         }
 
         private void LongListSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)

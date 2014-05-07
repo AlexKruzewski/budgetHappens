@@ -21,8 +21,8 @@ namespace budgetHappens
 
         #region Attributes
 
-        WithdrawalModel selectedWithdrawal = null;
-        bool valuesValidate = true;
+        WithdrawalModel _selectedWithdrawal = null;
+        bool _valuesValidate = true;
         #endregion
 
         #region Constructors
@@ -42,13 +42,13 @@ namespace budgetHappens
 
             if (NavigationContext.QueryString.TryGetValue("Edit", out value))
             {
-                selectedWithdrawal = (WithdrawalModel)PhoneApplicationService.Current.State["SelectedWithdrawal"];
-                selectedWithdrawal = (from w in App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals
-                                      where w.Equals(selectedWithdrawal)
+                _selectedWithdrawal = (WithdrawalModel)PhoneApplicationService.Current.State["SelectedWithdrawal"];
+                _selectedWithdrawal = (from w in App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals
+                                      where w.Equals(_selectedWithdrawal)
                                       select w).FirstOrDefault();
 
-                TextBoxAmount.Text = selectedWithdrawal.Amount.ToString("0.00");
-                TextBoxDescription.Text = selectedWithdrawal.Description;
+                TextBoxAmount.Text = _selectedWithdrawal.Amount.ToString("0.00");
+                TextBoxDescription.Text = _selectedWithdrawal.Description;
                 ButtonAddEditWithdrawal.Content = "Save";
                 Grid.SetColumnSpan(ButtonAddEditWithdrawal, 1);
 
@@ -61,16 +61,16 @@ namespace budgetHappens
         private void ButtonAddEditWithdrawal_Click_1(object sender, RoutedEventArgs e)
         {
             ValidateAmountField();
-            if (valuesValidate)
+            if (_valuesValidate)
             {
                 PeriodModel currentPeriod = App.CurrentSession.CurrentBudget.CurrentPeriod;
                 decimal amount = decimal.Parse(TextBoxAmount.Text);
 
-                if (selectedWithdrawal != null)
+                if (_selectedWithdrawal != null)
                 {
-                    selectedWithdrawal.StringAmount = App.CurrentSession.CurrentBudget.Currency + amount.ToString("0.00");
-                    selectedWithdrawal.Amount = amount;
-                    selectedWithdrawal.Description = TextBoxDescription.Text;
+                    _selectedWithdrawal.StringAmount = App.CurrentSession.CurrentBudget.Currency + amount.ToString("0.00");
+                    _selectedWithdrawal.Amount = amount;
+                    _selectedWithdrawal.Description = TextBoxDescription.Text;
                 }
                 else
                 {
@@ -84,14 +84,14 @@ namespace budgetHappens
 
         private void ButtonRemoveWithdrawal_Click_1(object sender, RoutedEventArgs e)
         {
-            App.CurrentSession.DeleteWithdrawal(App.CurrentSession.CurrentBudget, this.selectedWithdrawal);
+            App.CurrentSession.DeleteWithdrawal(App.CurrentSession.CurrentBudget, this._selectedWithdrawal);
             App.CurrentSession.SaveSession();
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         private void TextBoxAmount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
+            _valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
 
             ValidateAmountField();
         }
@@ -107,8 +107,8 @@ namespace budgetHappens
         #region Methods
         private void ValidateAmountField()
         {
-            valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
-            if (!valuesValidate)
+            _valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
+            if (!_valuesValidate)
             {
                 TextBlockValidationAmount.Visibility = Visibility.Visible;
                 TextBoxAmount.Background = new SolidColorBrush(Colors.Red);

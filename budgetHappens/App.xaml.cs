@@ -14,7 +14,7 @@ namespace budgetHappens
 {
     public partial class App : Application
     {
-        private static Session currentSession = null;
+        private static Session _currentSession = null;
 
         /// <summary>
         /// A static ViewModel used by the views to bind against.
@@ -25,10 +25,10 @@ namespace budgetHappens
             get
             {
                 // Delay creation of the view model until necessary
-                if (currentSession == null)
-                    currentSession = new Session();
+                if (_currentSession == null)
+                    _currentSession = new Session();
 
-                return currentSession;
+                return _currentSession;
             }
         }
 
