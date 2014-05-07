@@ -84,10 +84,8 @@ namespace budgetHappens
 
         private void ListPickerBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(App.CurrentSession.CurrentBudget.Name);
             BudgetModel selectedBudget = (BudgetModel)ListPickerBudgets.SelectedItem;
             App.CurrentSession.CurrentBudget = selectedBudget;
-            System.Diagnostics.Debug.WriteLine(App.CurrentSession.CurrentBudget.Name);
         }
 
         private void ListWithdrawals_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
