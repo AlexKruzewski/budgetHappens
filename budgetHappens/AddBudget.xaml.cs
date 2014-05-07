@@ -19,7 +19,6 @@ namespace budgetHappens
         #endregion
 
         #region Attributes
-        bool _valuesValidate = true;
         #endregion
 
         #region Constructors
@@ -38,8 +37,7 @@ namespace budgetHappens
 
         private void ButtonSave_Click_1(object sender, RoutedEventArgs e)
         {
-            ValidateAmountField();
-            if(_valuesValidate)
+            if (ValidateFields())
             {
                 BudgetModel newBudget = new BudgetModel();
 
@@ -73,27 +71,76 @@ namespace budgetHappens
             ValidateAmountField();
         }
 
+        private void TextBoxName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ValidateNameField();
+        }
+
+        private void TextBoxName_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            ValidateNameField();
+        }
+
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Validates the amount field to ensure the values added are valid.
+        /// In place so we can get around only one side
+        /// of the if statement from being verfied (was in
+        /// save statement)
         /// </summary>
-        private void ValidateAmountField()
+        /// <returns>A boolean</returns>
+        private bool ValidateFields()
         {
-            _valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
-            if (!_valuesValidate)
-            {
-                TextBlockValidationAmount.Visibility = Visibility.Visible;
-                TextBoxAmount.Background = new SolidColorBrush(Colors.Red);
-            }
+            if (!ValidateNameField() | !ValidateAmountField())
+                return false;
             else
+                return true;
+        }
+
+        /// <summary>
+        /// Validates the amount field
+        /// </summary>
+        /// <returns>A boolean</returns>
+        private bool ValidateAmountField()
+        {
+            bool amountValidates = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);
+
+            if(amountValidates)
             {
                 TextBlockValidationAmount.Visibility = Visibility.Collapsed;
                 TextBoxAmount.Background = new SolidColorBrush(Colors.White);
             }
+            else
+            {
+                TextBlockValidationAmount.Visibility = Visibility.Visible;
+                TextBoxAmount.Background = new SolidColorBrush(Colors.Red);  
+            }
 
+            return amountValidates;
+        }
+
+        /// <summary>
+        /// Validates the name field
+        /// </summary>
+        /// <returns>A boolean</returns>
+        private bool ValidateNameField()
+        {
+            bool nameValidates = GeneralHelpers.ValidateValue(TextBoxName.Text, DataType.String);
+
+            if (nameValidates)
+            {
+                TextBlockValidationName.Visibility = Visibility.Collapsed;
+                TextBoxName.Background = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                TextBlockValidationName.Visibility = Visibility.Visible;
+                TextBoxName.Background = new SolidColorBrush(Colors.Red);
+            }
+
+            return nameValidates;
         }
         #endregion
 

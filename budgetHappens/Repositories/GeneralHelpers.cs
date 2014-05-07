@@ -94,6 +94,9 @@ namespace budgetHappens.Repositories
                     DateTime tempDate;
                     validates = DateTime.TryParse(value.ToString(), out tempDate);
                     break;
+                case DataType.String:
+                    validates = !String.IsNullOrEmpty(value.ToString());
+                    break;
             }
 
             return validates;

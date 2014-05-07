@@ -79,12 +79,23 @@
                     Foreground="{Binding 
                         Path=LocalizedResources.ThirdColor, 
                         Source={StaticResource LocalizedStrings}}"/>
+                <TextBlock
+                    Name="TextBlockValidationName"
+                    Grid.Row="0"
+                    Foreground="Red"
+                    Text="Budget name is required"
+                    Visibility="Collapsed"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,-112,62"
+                    Grid.RowSpan="2" Grid.Column="1"/>
                 <TextBox 
                     Name="TextBoxName" 
                     Grid.Row="0"
                     Grid.Column="1" 
                     VerticalAlignment="Top"
                     HorizontalAlignment="Stretch"
+                    TextChanged="TextBoxName_TextChanged"
+                    KeyDown="TextBoxName_KeyDown"
                     BorderBrush="{Binding 
                         Path=LocalizedResources.ThirdColor, 
                         Source={StaticResource LocalizedStrings}}"
