@@ -28,6 +28,11 @@ namespace budgetHappens
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Populates the quickwidthdraw field with some prefined 
+        /// withdrawals.
+        /// </summary>
         private void PopulateData()
         {
             string currencyIcon = App.CurrentSession.CurrentBudget.Currency;

@@ -105,6 +105,10 @@ namespace budgetHappens
 
 
         #region Methods
+
+        /// <summary>
+        /// Validates the amount field to ensure the values added are valid.
+        /// </summary>
         private void ValidateAmountField()
         {
             _valuesValidate = GeneralHelpers.ValidateValue(TextBoxAmount.Text, DataType.Decimal);

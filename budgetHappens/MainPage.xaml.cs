@@ -17,6 +17,10 @@ using budgetHappens.Repositories;
 
 namespace budgetHappens
 {
+    /// <summary>
+    /// This is the main page of the application.
+    /// It is loaded as the first page.
+    /// </summary>
     public partial class MainPage : PhoneApplicationPage
     {
         #region Properties
@@ -27,7 +31,6 @@ namespace budgetHappens
         #endregion
 
         #region Constructors
-
         public MainPage()
         {
             InitializeComponent();
@@ -36,7 +39,12 @@ namespace budgetHappens
         #endregion
 
         #region Event Handlers
-
+        /// <summary>
+        /// Is ran when the A property change event is called
+        /// in the session.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CurrentSession_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "CurrentBudget")
@@ -91,7 +99,12 @@ namespace budgetHappens
         #endregion
 
         #region Methods
-
+        /// <summary>
+        /// Get the current budget or makes a call
+        /// for one if no current budget is set.
+        /// Then shows determines if fields need to be hidden
+        /// or displayed.
+        /// </summary>
         private void SetUpCurrentBudget()
         {
 
@@ -105,6 +118,12 @@ namespace budgetHappens
             
         }
 
+        /// <summary>
+        /// Shows the fields that need to be displayed if
+        /// there is a budget available. 
+        /// Also handles some string formatting.
+        /// If the current budget period is no longer valid, a new one is setup.
+        /// </summary>
         private void ShowCaseBugetsAvailable()
         {
             if (!App.CurrentSession.CurrentBudget.IsPeriodValid())
@@ -124,6 +143,9 @@ namespace budgetHappens
                 TextBlockCurrentAmount.Foreground = new SolidColorBrush(Colors.Red);
         }
 
+        /// <summary>
+        /// Hides fields if no budgets are set up.
+        /// </summary>
         private void ShowCaseNoBudgets()
         {
             StackPanelCurrent.Children.Remove(TextBlockDaysLeft);
@@ -138,6 +160,9 @@ namespace budgetHappens
             ButtonAddBuget.Visibility = System.Windows.Visibility.Visible;
         }
 
+        /// <summary>
+        /// Sets up the list of withdrawals based on the current budget
+        /// </summary>
         private void SetupWithdrawalList()
         {
             if (App.CurrentSession.CurrentBudget != null)
@@ -152,6 +177,9 @@ namespace budgetHappens
 
         }
 
+        /// <summary>
+        /// Sets up the budget listpicker.
+        /// </summary>
         private void SetupBudgetList()
         {
             ListPickerBudgets.ItemsSource = App.CurrentSession.Budgets;

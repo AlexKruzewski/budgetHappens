@@ -40,11 +40,20 @@ namespace budgetHappens.Models
 
         #region Methods
 
+        /// <summary>
+        /// Checks to see if the current budget period is valid
+        /// (has not extended beyond its end date)
+        /// </summary>
+        /// <returns>Returns bool</returns>
         internal bool IsPeriodValid()
         {
             return (DateTime.Now < this.CurrentPeriod.EndDate) ? true : false;
         }
 
+        /// <summary>
+        /// Starts a new period for the current budget.
+        /// </summary>
+        /// <returns>Returns a new budget period</returns>
         internal PeriodModel StartNewPeriod()
         {
             PeriodModel newPeriod = new PeriodModel(this.BudgetStartDay, this.AmountPerPeriod, this.PeriodLength);

@@ -23,6 +23,12 @@ namespace budgetHappens.Repositories
             .ToList<string>();
         }
 
+        /// <summary>
+        /// Gets the date of the given day in the week closest to before the currenct date
+        /// </summary>
+        /// <param name="dt">Todays Date</param>
+        /// <param name="startOfWeek">The day of the week</param>
+        /// <returns></returns>
         public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
             int diff = dt.DayOfWeek - startOfWeek;
@@ -34,6 +40,10 @@ namespace budgetHappens.Repositories
             return dt.AddDays(-1 * diff).Date;
         }
 
+        /// <summary>
+        /// Returns the list of currencies available
+        /// </summary>
+        /// <returns>Returns a list of currencies</returns>
         public static List<string> GetCurrencies()
         {
             List<string> currencies = new List<string>();
@@ -60,6 +70,12 @@ namespace budgetHappens.Repositories
             return;
         }
 
+        /// <summary>
+        /// Validates the given data type
+        /// </summary>
+        /// <param name="value">The values to be validated</param>
+        /// <param name="dataType">The datatype to validate it agasint.</param>
+        /// <returns></returns>
         public static bool ValidateValue(object value, DataType dataType)
         {
             bool validates = true;

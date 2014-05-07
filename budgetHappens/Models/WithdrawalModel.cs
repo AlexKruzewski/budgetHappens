@@ -21,6 +21,12 @@ namespace budgetHappens.Models
         #endregion
 
         #region Constructors
+        /// <summary>
+        /// Builds the withdrawal model and populates it with the given data
+        /// </summary>
+        /// <param name="amount">Amount of the withdrawal</param>
+        /// <param name="description">Description of the withdrawal</param>
+        /// <param name="currencySymbol">Currency symbol used (for display)</param>
         public WithdrawalModel(decimal amount, string description, string currencySymbol)
         {
             this.Amount = amount;

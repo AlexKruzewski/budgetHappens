@@ -45,7 +45,12 @@ namespace budgetHappens.Models
         #endregion
 
         #region Constructors
-
+        /// <summary>
+        /// Sets up a budget period.
+        /// </summary>
+        /// <param name="startDay">Day of Week</param>
+        /// <param name="periodAmount">Decimal value of the budget amount</param>
+        /// <param name="length">How long this budget period will last.</param>
         public PeriodModel(DayOfWeek startDay, decimal periodAmount, PeriodLength length)
         {
             switch (length)
