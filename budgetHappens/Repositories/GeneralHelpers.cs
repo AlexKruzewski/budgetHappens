@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,6 +102,40 @@ namespace budgetHappens.Repositories
             }
 
             return validates;
+        }
+
+        /// <summary>
+        /// Saves the given data to isolated storage under the given file name
+        /// </summary>
+        /// <param name="isoFileName">The name of the file to save to</param>
+        /// <param name="value">The string value of what you are saving</param>
+        public static void SaveDataToIsolatedStorage(string isoFileName, string value)
+        {
+            IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+            StreamWriter sw = new StreamWriter(isoStore.OpenFile(isoFileName, FileMode.OpenOrCreate));
+            sw.Write(value);
+            sw.Close();
+        }
+
+        /// <summary>
+        /// Gets the data from isolated storage
+        /// </summary>
+        /// <param name="isoFileName">Filename to which to get the data from</param>
+        /// <returns></returns>
+        public static string GetDataFromIsolatedStorage(string isoFileName)
+        {
+            IsolatedStorageFile isoStore = IsolatedStorageFile.GetUserStoreForApplication();
+            if (isoStore.FileExists(isoFileName))
+            {
+                // This method loads the data from isolated storage, if it is available.
+                StreamReader sr = new StreamReader(isoStore.OpenFile(isoFileName, FileMode.Open));
+                string data = sr.ReadToEnd();
+                sr.Close();
+
+                return data;
+            }
+            else
+                return "";
         }
 
     }

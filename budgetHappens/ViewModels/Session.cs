@@ -1,4 +1,5 @@
 ﻿using budgetHappens.Models;
+using budgetHappens.Repositories;
 using Microsoft.Phone.Shell;
 using Newtonsoft.Json;
 using System;
@@ -50,6 +51,7 @@ namespace budgetHappens.ViewModels
 
         private ObservableCollection<BudgetModel> _budgets;
         private BudgetModel _currentBudget;
+        private string _fileName = "Budgets.xml";
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
@@ -68,16 +70,26 @@ namespace budgetHappens.ViewModels
 
         #region Methods
 
+        /// <summary>
+        /// Is called when a property is changed.
+        /// Sets up a new event with the property that has changed,
+        /// which notifies any listeners
+        /// </summary>
+        /// <param name="name">Name of the property that has changed</param>
         protected void RaisePropertyChanged(string name)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(name));
         }
 
+        /// <summary>
+        /// Populates the budget list from the
+        /// data given in isolated storage
+        /// </summary>
         private void populateBudgets()
         {
-            string dataFromStorage = "";
-            if (IsolatedStorageSettings.ApplicationSettings.TryGetValue("Budgets", out dataFromStorage))
+            string dataFromStorage = GeneralHelpers.GetDataFromIsolatedStorage(_fileName);
+            if (!String.IsNullOrEmpty(dataFromStorage))
             {
                 Budgets = JsonConvert.DeserializeObject<ObservableCollection<BudgetModel>>(dataFromStorage);
             }
@@ -85,6 +97,12 @@ namespace budgetHappens.ViewModels
                 Budgets = new ObservableCollection<BudgetModel>();
         }
 
+        /// <summary>
+        /// Returns the Default budget, if there
+        /// is no default budget we find the next available
+        /// budget and set that to the new default
+        /// </summary>
+        /// <returns>A budget</returns>
         public BudgetModel GetDefaultOrNextBudget()
         {
             BudgetModel defaultBudget = null;
@@ -107,34 +125,48 @@ namespace budgetHappens.ViewModels
             return defaultBudget;
         }
 
+        /// <summary>
+        /// Sends the budget data to isolated storage
+        /// </summary>
         public void SaveSession()
         {
-
             var data = JsonConvert.SerializeObject(this.Budgets);
-           
-            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-            settings["Budgets"] = data;
-            settings.Save();
 
-            //PhoneApplicationService.Current.State["CurrentSession"] = this;
+            GeneralHelpers.SaveDataToIsolatedStorage(_fileName, data);
         }
 
+        /// <summary>
+        /// Adds a new budget to the budget list
+        /// </summary>
+        /// <param name="newBudget">Budget to be added</param>
         internal void AddBudget(BudgetModel newBudget)
         {
             this.Budgets.Add(newBudget);
         }
 
+        /// <summary>
+        /// Deletes a given budget from the budget list
+        /// </summary>
+        /// <param name="budget">Budget to be removed</param>
         internal void DeleteBudget(BudgetModel budget)
         {
             this.Budgets.Remove(budget);
         }
 
-
+        /// <summary>
+        /// Changes the currently selected budget
+        /// </summary>
+        /// <param name="selectedBudget">The budget to change to</param>
         internal void ChangeCurrentBudget(BudgetModel selectedBudget)
         {
             this.CurrentBudget = selectedBudget;
         }
 
+        /// <summary>
+        /// Handles the removal of a withdrawal
+        /// </summary>
+        /// <param name="budgetModel">The budget to remove the withdrawalfrom</param>
+        /// <param name="withdrawalModel">The withdrawal to remove</param>
         internal void DeleteWithdrawal(BudgetModel budgetModel, WithdrawalModel withdrawalModel)
         {
             budgetModel.CurrentPeriod.Withdrawals.Remove(withdrawalModel);
