@@ -63,6 +63,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -165,7 +166,7 @@
                         Source={StaticResource LocalizedStrings}}"/>
 
                 <TextBlock 
-                    Text="Start Day" 
+                    Text="Start Day*" 
                     Grid.Row="3"
                     Grid.Column="0"
                     VerticalAlignment="Top"
@@ -217,6 +218,20 @@
                         Source={StaticResource LocalizedStrings}}"
                     BorderThickness="0"
                     />
+                <TextBlock
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Padding="10,10,10,10"
+                    Height="auto"
+                    FontSize="30"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}">
+                    <Run Text="*This is the day in the week"/>
+                    <LineBreak/>
+                    <Run Text="that the budget refreshes."/>
+                </TextBlock>
+                    
 
             </Grid>
         </Grid>
