@@ -56,6 +56,12 @@ namespace budgetHappens
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            // I want to clear the nav backstack as there shouldnt
+            // be a reason for a person wanting to go back to any
+            // previous pages.
+            while (this.NavigationService.BackStack.Any())
+                this.NavigationService.RemoveBackEntry();
+
             SetUpCurrentBudget();
             SetupBudgetList();
             SetupWithdrawalList();
