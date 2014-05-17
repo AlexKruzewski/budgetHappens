@@ -89,6 +89,8 @@ namespace budgetHappens.Repositories
                 case DataType.Decimal:
                     decimal tempDecimal;
                     validates = decimal.TryParse(value.ToString(), out tempDecimal);
+                    if (tempDecimal < 0)
+                        validates = false;
                     break;
                 case DataType.Date:
                     DateTime tempDate;

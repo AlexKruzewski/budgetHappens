@@ -17,14 +17,14 @@
     <ManualTestCase Name="5.4.1">Passed</ManualTestCase>
     <ManualTestCase Name="5.5.1">Passed</ManualTestCase>
     <ManualTestCase Name="5.5.2">Passed</ManualTestCase>
-    <ManualTestCase Name="5.6.1">Failed</ManualTestCase>
+    <ManualTestCase Name="5.6.1">Passed</ManualTestCase>
     <ManualTestCase Name="6.1">Pending</ManualTestCase>
     <ManualTestCase Name="6.2.1">Pending</ManualTestCase>
     <ManualTestCase Name="6.2.2">Pending</ManualTestCase>
     <ManualTestCase Name="6.3.1">Pending</ManualTestCase>
     <ManualTestCase Name="6.3.2.1">Pending</ManualTestCase>
-    <ManualTestCase Name="6.3.2.2">Pending</ManualTestCase>
-    <ManualTestCase Name="6.3.3.1">Pending</ManualTestCase>
+    <ManualTestCase Name="6.3.2.2">Passed</ManualTestCase>
+    <ManualTestCase Name="6.3.3.1">Passed</ManualTestCase>
     <ManualTestCase Name="6.4.1">Pending</ManualTestCase>
     <ManualTestCase Name="6.4.2">Pending</ManualTestCase>
     <ManualTestCase Name="6.4.3">Pending</ManualTestCase>
