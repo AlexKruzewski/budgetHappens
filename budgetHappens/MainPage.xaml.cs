@@ -99,7 +99,7 @@ namespace budgetHappens
         private void ListWithdrawals_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             PhoneApplicationService.Current.State["SelectedWithdrawal"] = (TransactionModel)ListWithdrawals.SelectedItem;
-            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml?Action=Edit", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/AddEditTransaction.xaml?Action=Edit", UriKind.Relative));
         }
 
         private void About_Click(object sender, EventArgs e)
@@ -109,7 +109,7 @@ namespace budgetHappens
 
         private void AddFundsButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml?Action=Deposit", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/AddEditTransaction.xaml?Action=Deposit", UriKind.Relative));
         }
 
         #endregion
@@ -168,8 +168,6 @@ namespace budgetHappens
             StackPanelCurrent.Children.Remove(GridBudgets);
             StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
             StackPanelCurrent.Children.Remove(TextBlockPeriodAmount);
-            StackPanelCurrent.Children.Remove(ButtonWithdraw);
-
             ApplicationBar.IsVisible = false;
 
             TextBlockNoBudgetSet.Visibility = System.Windows.Visibility.Visible;

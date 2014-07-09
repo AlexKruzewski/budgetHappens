@@ -138,18 +138,7 @@
                             Path=LocalizedResources.ThirdColor, 
                             Source={StaticResource LocalizedStrings}}"
                         TextAlignment="Center"/>
-                    <Button
-                        Name="ButtonWithdraw"
-                        Content="Withdraw"
-                        Click="AddWithdrawalButton_Click"
-                        FontSize="48"
-                        Width="auto"
-                        Margin="20,40,20,0"
-                        Background="{Binding 
-                            Path=LocalizedResources.SecondaryColor, 
-                            Source={StaticResource LocalizedStrings}}"
-                        BorderThickness="0"
-                        />
+
                 </StackPanel>
 
                 <!--Double line list with text wrapping-->
@@ -233,14 +222,16 @@
             IsMenuEnabled="True"
             BackgroundColor="#1f8aa8"
             x:Name="ApplicationBarCurrent"
-            Mode="Minimized"
+            Mode="Default"
            >
             <shell:ApplicationBarIconButton 
+                    x:Name="ButtonQuickWithdraw"
                     Text="Withdraw"
                     IconUri="Assets/Tiles/"
                     Click="AddWithdrawalButton_Click"
                     />
             <shell:ApplicationBarIconButton 
+                    x:Name="ButtonAddFunds"
                     Text="Add funds"
                     IconUri="Assets/Tiles/"
                     Click="AddFundsButton_Click"
