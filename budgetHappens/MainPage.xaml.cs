@@ -96,9 +96,9 @@ namespace budgetHappens
             App.CurrentSession.CurrentBudget = selectedBudget;
         }
 
-        private void ListWithdrawals_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void ListTransactions_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            PhoneApplicationService.Current.State["SelectedWithdrawal"] = (TransactionModel)ListWithdrawals.SelectedItem;
+            PhoneApplicationService.Current.State["SelectedWithdrawal"] = (TransactionModel)ListTransactions.SelectedItem;
             NavigationService.Navigate(new Uri("/AddEditTransaction.xaml?Action=Edit", UriKind.Relative));
         }
 
@@ -184,10 +184,10 @@ namespace budgetHappens
                 var withdrawalList = (from withdrawal in App.CurrentSession.CurrentBudget.CurrentPeriod.Transactions
                                      select withdrawal).OrderByDescending(x=>x.TransactionDate).ToList();
 
-                ListWithdrawals.ItemsSource = withdrawalList;
+                ListTransactions.ItemsSource = withdrawalList;
             }
             else
-                ListWithdrawals.ItemsSource = new List<TransactionModel>();
+                ListTransactions.ItemsSource = new List<TransactionModel>();
 
         }
 

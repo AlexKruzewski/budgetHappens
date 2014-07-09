@@ -32,7 +32,15 @@ namespace budgetHappens.Models
         public TransactionModel(decimal amount, string description, string currencySymbol, TransactionType transactionType)
         {
             this.Amount = amount;
-            this.StringAmount = currencySymbol + amount.ToString("0.00");
+            switch(transactionType)
+            {
+                case TransactionType.Deposit:
+                    this.StringAmount = String.Format("{0}{1}",currencySymbol, amount.ToString("0.00"));
+                    break;
+                case TransactionType.Withdrawal:
+                    this.StringAmount = String.Format("-{0}{1}",currencySymbol, amount.ToString("0.00"));
+                    break;
+            }
             this.Description = description;
             this.TransactionDate = DateTime.Now;
             this.TransactionType = transactionType;

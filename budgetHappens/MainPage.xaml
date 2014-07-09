@@ -149,9 +149,9 @@
             <phone:PivotItem Header="History">
                 <!--Double line list no text wrapping-->
                 <phone:LongListSelector 
-                    Name="ListWithdrawals" 
+                    Name="ListTransactions" 
                     Margin="0,0,-12,0"
-                    SelectionChanged="ListWithdrawals_SelectionChanged_1">
+                    SelectionChanged="ListTransactions_SelectionChanged_1">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <Grid
