@@ -23,7 +23,10 @@ namespace budgetHappens.Models
                 decimal tempAmount = PeriodAmount;
                 foreach (var withdrawal in Transactions)
                 {
-                    tempAmount -= withdrawal.Amount;
+                    if(withdrawal.TransactionType == TransactionType.Deposit)
+                        tempAmount += withdrawal.Amount;
+                    else if(withdrawal.TransactionType == TransactionType.Withdrawal)
+                        tempAmount -= withdrawal.Amount;
                 }
                 return tempAmount;
             }

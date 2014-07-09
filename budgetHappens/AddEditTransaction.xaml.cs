@@ -91,7 +91,7 @@ namespace budgetHappens
                         }
                         break;
                     case "Deposit":
-                        currentPeriod.Transactions.Add(new TransactionModel(amount * -1.00M, TextBoxDescription.Text, App.CurrentSession.CurrentBudget.Currency, TransactionType.Withdrawal));
+                        currentPeriod.Transactions.Add(new TransactionModel(amount, TextBoxDescription.Text, App.CurrentSession.CurrentBudget.Currency, TransactionType.Withdrawal));
                         break;
                     default:
                         currentPeriod.Transactions.Add(new TransactionModel(amount, TextBoxDescription.Text, App.CurrentSession.CurrentBudget.Currency, TransactionType.Deposit));
