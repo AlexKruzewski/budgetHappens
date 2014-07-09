@@ -96,8 +96,8 @@
     <Compile Include="AddBudget.xaml.cs">
       <DependentUpon>AddBudget.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddEditWithdrawal.xaml.cs">
-      <DependentUpon>AddEditWithdrawal.xaml</DependentUpon>
+    <Compile Include="AddEditTransaction.xaml.cs">
+      <DependentUpon>AddEditTransaction.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -121,7 +121,7 @@
     <Compile Include="Models\BudgetModel.cs" />
     <Compile Include="Models\PeriodModel.cs" />
     <Compile Include="ViewModels\Session.cs" />
-    <Compile Include="Models\WithdrawalModel.cs" />
+    <Compile Include="Models\TransactionModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -136,7 +136,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddEditWithdrawal.xaml">
+    <Page Include="AddEditTransaction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

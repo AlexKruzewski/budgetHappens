@@ -235,7 +235,16 @@
             x:Name="ApplicationBarCurrent"
             Mode="Minimized"
            >
-
+            <shell:ApplicationBarIconButton 
+                    Text="Withdraw"
+                    IconUri="Assets/Tiles/"
+                    Click="AddWithdrawalButton_Click"
+                    />
+            <shell:ApplicationBarIconButton 
+                    Text="Add funds"
+                    IconUri="Assets/Tiles/"
+                    Click="AddFundsButton_Click"
+                    />
             <shell:ApplicationBar.MenuItems>
 
                 <shell:ApplicationBarMenuItem 

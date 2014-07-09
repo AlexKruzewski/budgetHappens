@@ -98,13 +98,18 @@ namespace budgetHappens
 
         private void ListWithdrawals_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            PhoneApplicationService.Current.State["SelectedWithdrawal"] = (WithdrawalModel)ListWithdrawals.SelectedItem;
-            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml?Edit=true", UriKind.Relative));
+            PhoneApplicationService.Current.State["SelectedWithdrawal"] = (TransactionModel)ListWithdrawals.SelectedItem;
+            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml?Action=Edit", UriKind.Relative));
         }
 
         private void About_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
+        }
+
+        private void AddFundsButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml?Action=Deposit", UriKind.Relative));
         }
 
         #endregion
@@ -178,13 +183,13 @@ namespace budgetHappens
         {
             if (App.CurrentSession.CurrentBudget != null)
             {
-                var withdrawalList = (from withdrawal in App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals
-                                     select withdrawal).OrderByDescending(x=>x.WithdrawalDate).ToList();
+                var withdrawalList = (from withdrawal in App.CurrentSession.CurrentBudget.CurrentPeriod.Transactions
+                                     select withdrawal).OrderByDescending(x=>x.TransactionDate).ToList();
 
                 ListWithdrawals.ItemsSource = withdrawalList;
             }
             else
-                ListWithdrawals.ItemsSource = new List<WithdrawalModel>();
+                ListWithdrawals.ItemsSource = new List<TransactionModel>();
 
         }
 
@@ -199,6 +204,8 @@ namespace budgetHappens
         }
 
         #endregion
+
+        
 
 
     }
