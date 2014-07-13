@@ -227,13 +227,13 @@
             <shell:ApplicationBarIconButton 
                     x:Name="ButtonQuickWithdraw"
                     Text="Withdraw"
-                    IconUri="Assets/Tiles/"
+                    IconUri="Assets/icons/withdraw-icon-48.png"
                     Click="AddWithdrawalButton_Click"
                     />
             <shell:ApplicationBarIconButton 
                     x:Name="ButtonAddFunds"
                     Text="Add funds"
-                    IconUri="Assets/Tiles/"
+                    IconUri="Assets/icons/deposit-icon-48.png"
                     Click="AddFundsButton_Click"
                     />
             <shell:ApplicationBar.MenuItems>
