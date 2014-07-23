@@ -192,7 +192,7 @@
                                         Style="{StaticResource PhoneTextSubtleStyle}"/>
                                     <TextBlock
                                         Grid.Row="1"
-                                        Text="{Binding WithdrawalDate}" 
+                                        Text="{Binding TransactionDate}" 
                                         TextWrapping="NoWrap" 
                                         Foreground="{Binding 
                                             Path=LocalizedResources.ThirdColor, 
