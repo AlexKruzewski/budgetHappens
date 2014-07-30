@@ -104,6 +104,7 @@ namespace budgetHappens
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             CurrentSession.SaveSession();
+            GeneralHelpers.UpdateLiveTile(CurrentSession.GetDefaultOrNextBudget());
         }
 
         // Code to execute if a navigation fails

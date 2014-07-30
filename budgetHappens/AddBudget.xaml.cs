@@ -49,8 +49,25 @@ namespace budgetHappens
 
                 newBudget.BudgetStartDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), ListPickerStartDay.SelectedIndex.ToString());
                 newBudget.CurrentPeriod = new PeriodModel(newBudget.BudgetStartDay, newBudget.AmountPerPeriod, newBudget.PeriodLength);
+                System.Diagnostics.Debug.WriteLine(CheckboxDefault.IsChecked.ToString());
+                //If the current budget is set as default we want to find the previous default budget and clear it default status.
+                if (App.CurrentSession.Budgets.Count() == 0 | CheckboxDefault.IsChecked == true)
+                {
+                    System.Diagnostics.Debug.WriteLine("in here");
+                    if (App.CurrentSession.Budgets.Count() > 0) 
+                    {
+                        BudgetModel tempBudget = App.CurrentSession.GetDefaultOrNextBudget();
+                        System.Diagnostics.Debug.WriteLine(tempBudget.Default.ToString());
+                        tempBudget.Default = false;
+                    }
+                   
+                    newBudget.Default = true;
+                }
+                else
+                {
+                    newBudget.Default = false;
+                }
 
-                newBudget.Default = (App.CurrentSession.Budgets.Count() == 0) ? true : false;
                 App.CurrentSession.Budgets.Add(newBudget);
                 App.CurrentSession.CurrentBudget = newBudget;
 

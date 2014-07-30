@@ -125,9 +125,10 @@ namespace budgetHappens.Repositories
                 oFliptile.BackTitle = "Budget Happens";
                 oFliptile.BackContent = "";
                 
-                string[] stringArray = new string[2];
-                stringArray[0] = string.Format("{0}{1}", budget.Currency, budget.CurrentPeriod.CurrentAmount.ToString("0.00"));
-                stringArray[1] = string.Format("{0} days left", budget.CurrentPeriod.DaysLeft.ToString("0"));
+                string[] stringArray = new string[3];
+                stringArray[0] = string.Format("{0}", budget.Name);
+                stringArray[1] = string.Format("{0}{1}", budget.Currency, budget.CurrentPeriod.CurrentAmount.ToString("0.00"));
+                stringArray[2] = string.Format("{0} days left", budget.CurrentPeriod.DaysLeft.ToString("0"));
 
                 RenderText(stringArray, 336, 336, 64, "BackBackgroundImage");
                 oFliptile.BackgroundImage = new Uri("Assets/Tiles/logo-med.png", UriKind.Relative);
@@ -160,8 +161,21 @@ namespace budgetHappens.Repositories
             SolidColorBrush backColor = Convert(AppResources.SecondaryColor);
             background.Background = backColor;
 
+            var budgetName = new TextBlock();
+            budgetName.Text = text[0];
+            budgetName.Margin = new Thickness(75.00, 60.00, 0, 0);
+            budgetName.TextAlignment = TextAlignment.Left;
+            budgetName.HorizontalAlignment = HorizontalAlignment.Center;
+            budgetName.VerticalAlignment = VerticalAlignment.Center;
+            budgetName.Width = b.PixelWidth - budgetName.Margin.Left;
+            budgetName.TextWrapping = TextWrapping.Wrap;
+            budgetName.Foreground = new SolidColorBrush(Colors.White); //color of the text on the Tile
+            budgetName.FontSize = 48;
+
+            canvas.Children.Add(budgetName);
+
             var currentAmount = new TextBlock();
-            currentAmount.Text = text[0];
+            currentAmount.Text = text[1];
             currentAmount.Margin = new Thickness(75.00, 100.00, 0, 0);
             currentAmount.TextAlignment = TextAlignment.Left;
             currentAmount.HorizontalAlignment = HorizontalAlignment.Center;
@@ -174,7 +188,7 @@ namespace budgetHappens.Repositories
             canvas.Children.Add(currentAmount);
 
             var daysLeft = new TextBlock();
-            daysLeft.Text = text[1];
+            daysLeft.Text = text[2];
             daysLeft.Margin = new Thickness(90.00, 180.00, 0, 0);
             daysLeft.TextAlignment = TextAlignment.Left;
             daysLeft.HorizontalAlignment = HorizontalAlignment.Center;

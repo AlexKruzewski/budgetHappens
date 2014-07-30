@@ -65,7 +65,13 @@ namespace budgetHappens
             SetUpCurrentBudget();
             SetupBudgetList();
             SetupWithdrawalList();
-            //GeneralHelpers.UpdateLiveTile(App.CurrentSession.GetDefaultOrNextBudget());
+            if(App.CurrentSession.Budgets.Count() > 0)
+            {
+                foreach(var budget in App.CurrentSession.Budgets)
+                {
+                    System.Diagnostics.Debug.WriteLine(budget.Name + " " + budget.Default.ToString());
+                }
+            }
         }
 
         private void AddBudgetButton_Click_1(object sender, EventArgs e)
