@@ -128,6 +128,12 @@ namespace budgetHappens
             ValidateAmountField();
         }
 
+        private void TextBoxDescription_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (TextBoxDescription.Text == "Quick Withdrawal")
+                TextBoxDescription.Text = "";
+        }
+
         #endregion
 
         #region Methods

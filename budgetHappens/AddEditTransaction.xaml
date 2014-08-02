@@ -121,6 +121,7 @@
                     Grid.Column="1"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Stretch"
+                    GotFocus="TextBoxDescription_GotFocus"
                     Foreground="{Binding 
                             Path=LocalizedResources.ThirdColor, 
                             Source={StaticResource LocalizedStrings}}"

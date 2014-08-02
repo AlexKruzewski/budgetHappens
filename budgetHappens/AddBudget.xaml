@@ -232,7 +232,7 @@
                 </toolkit:ListPicker>
                 <TextBlock
                     Name="TextBlockDefault"
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="0"
                     Text="Default"
                     VerticalAlignment="Top"
@@ -244,7 +244,7 @@
                         Source={StaticResource LocalizedStrings}}"/>
                 <CheckBox
                     Name="CheckboxDefault"
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="1"
                     HorizontalAlignment="Center"
                     Foreground="{Binding 

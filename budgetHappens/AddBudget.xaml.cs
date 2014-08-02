@@ -107,14 +107,20 @@ namespace budgetHappens
                 case PeriodLength.Yearly:
                     TextblockStartDay.Visibility = Visibility.Collapsed;
                     ListPickerStartDay.Visibility = Visibility.Collapsed;
+                    TextBlockDefault.SetValue(Grid.RowProperty, 4);
+                    CheckboxDefault.SetValue(Grid.RowProperty, 4);
                     break;
                 case PeriodLength.Monthly:
                     TextblockStartDay.Visibility = Visibility.Collapsed;
                     ListPickerStartDay.Visibility = Visibility.Collapsed;
+                    TextBlockDefault.SetValue(Grid.RowProperty, 4);
+                    CheckboxDefault.SetValue(Grid.RowProperty, 4);
                     break;
                 case PeriodLength.Weekly:
                     TextblockStartDay.Visibility = Visibility.Visible;
                     ListPickerStartDay.Visibility = Visibility.Visible;
+                    TextBlockDefault.SetValue(Grid.RowProperty, 5);
+                    CheckboxDefault.SetValue(Grid.RowProperty, 5);
                     break;
             }
         }
