@@ -161,6 +161,8 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\add.png" />
+    <Content Include="Assets\Icons\delete.png" />
     <Content Include="Assets\Icons\deposit-icon-48.png" />
     <Content Include="Assets\Icons\save.png" />
     <Content Include="Assets\Icons\withdraw-icon-48.png" />

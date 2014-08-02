@@ -43,6 +43,7 @@ namespace budgetHappens
         {
             
             var gotQuery = NavigationContext.QueryString.TryGetValue("Action", out _action);
+            ApplicationBarIconButton btn = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
 
             switch (_action)
             {
@@ -54,25 +55,29 @@ namespace budgetHappens
 
                     TextBoxAmount.Text = _selectedTransaction.Amount.ToString("0.00");
                     TextBoxDescription.Text = _selectedTransaction.Description;
-                    TextBlockTitle.Text = "Edit";
-                    ButtonAddEditTransaction.Content = "Save";
-                    Grid.SetColumnSpan(ButtonAddEditTransaction, 1);
 
-                    ButtonRemoveTransaction.Visibility = System.Windows.Visibility.Visible;
+                    if(_selectedTransaction.TransactionType == TransactionType.Deposit)
+                        TextBlockTitle.Text = "Edit Deposit";
+                    else
+                        TextBlockTitle.Text = "Edit Withdrawal";
 
+                    btn.Text = "Save";
+                    btn.IconUri = new Uri("/Assets/icons/save.png", UriKind.Relative);
                     PhoneApplicationService.Current.State["SelectedWithdrawal"] = null;
                     break;
                 case "Deposit":
                     TextBlockTitle.Text = "Add Funds";
-                    ButtonAddEditTransaction.Content = "Add Funds";
+                    btn.Text = "Add Funds";
+                    ApplicationBar.Buttons.RemoveAt(1);
                     break;
                 default:
+                    ApplicationBar.Buttons.RemoveAt(1);
                     break;
             }
 
         }
 
-        private void ButtonAddEditTransaction_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             ValidateAmountField();
             if (_valuesValidate)
@@ -104,7 +109,7 @@ namespace budgetHappens
             }
         }
 
-        private void ButtonRemoveTransaction_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonRemove_Click(object sender, EventArgs e)
         {
             App.CurrentSession.DeleteTransaction(App.CurrentSession.CurrentBudget, this._selectedTransaction);
             App.CurrentSession.SaveSession();

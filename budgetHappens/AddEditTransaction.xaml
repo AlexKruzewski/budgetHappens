@@ -127,36 +127,31 @@
                     BorderBrush="{Binding 
                             Path=LocalizedResources.ThirdColor, 
                             Source={StaticResource LocalizedStrings}}"/>
-                <Button 
-                    Name="ButtonAddEditTransaction"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Click="ButtonAddEditTransaction_Click_1"
-                    Content="Withdraw"
-                    FontSize="48"
-                    Width="auto"
-                    Margin="20,40,20,0"
-                    Background="{Binding 
-                        Path=LocalizedResources.SecondaryColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    BorderThickness="0"
-                    />
-                <Button
-                    Name="ButtonRemoveTransaction"
-                    Click="ButtonRemoveTransaction_Click_1"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Content="Delete"
-                    Visibility="Collapsed"
-                    FontSize="48"
-                    Width="auto"
-                    Margin="20,40,20,0"
-                    Background="Crimson"
-                    BorderThickness="0"
-                    />
             </Grid>
         </Grid>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar 
+            IsVisible="True" 
+            IsMenuEnabled="True"
+            BackgroundColor="#1f8aa8"
+            x:Name="ApplicationBarCurrent"
+            Mode="Default"
+           >
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonSave"
+                    Text="widthdraw"
+                    IconUri="Assets/icons/add.png"
+                    Click="ButtonSave_Click"
+                    />
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonRemove"
+                    Text="delete"
+                    IconUri="Assets/icons/delete.png"
+                    Click="ButtonRemove_Click"
+                    />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>
