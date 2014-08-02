@@ -164,10 +164,36 @@
                     BorderBrush="{Binding 
                         Path=LocalizedResources.ThirdColor, 
                         Source={StaticResource LocalizedStrings}}"/>
-
-                <TextBlock 
-                    Text="Start Day*" 
+                <TextBlock
+                    Name="TextblockLength"
                     Grid.Row="3"
+                    Grid.Column="0"
+                    Text="Period Length"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="20,18,0,0"
+                    FontSize="32"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
+                <toolkit:ListPicker 
+                    x:Name="ListPickerLength" 
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    SelectionChanged="ListPickerLength_SelectionChanged"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    BorderBrush="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"/>
+                <TextBlock 
+                    Name="TextblockStartDay"
+                    Text="Start Day" 
+                    Grid.Row="4"
                     Grid.Column="0"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Left"
@@ -178,7 +204,7 @@
                         Source={StaticResource LocalizedStrings}}"/>
                 <toolkit:ListPicker 
                     x:Name="ListPickerStartDay" 
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="1"             
                     VerticalAlignment="Top"
                     HorizontalAlignment="Stretch"
@@ -207,7 +233,7 @@
                 <Button 
                     Name="ButtonSave" 
                     Content="Save" 
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.ColumnSpan="2"
                     Click="ButtonSave_Click_1"
                     FontSize="48"
@@ -218,21 +244,6 @@
                         Source={StaticResource LocalizedStrings}}"
                     BorderThickness="0"
                     />
-                <TextBlock
-                    Grid.Row="5"
-                    Grid.ColumnSpan="2"
-                    Padding="10,10,10,10"
-                    Height="auto"
-                    FontSize="30"
-                    Foreground="{Binding 
-                        Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}">
-                    <Run Text="*This is the day in the week"/>
-                    <LineBreak/>
-                    <Run Text="that the budget refreshes."/>
-                </TextBlock>
-                    
-
             </Grid>
         </Grid>
     </Grid>

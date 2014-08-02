@@ -28,6 +28,7 @@ namespace budgetHappens
             InitializeComponent();
 
             ListPickerCurrency.ItemsSource = GeneralHelpers.GetCurrencies();
+            ListPickerLength.ItemsSource = GeneralHelpers.GetNames<PeriodLength>();
             ListPickerStartDay.ItemsSource = GeneralHelpers.GetNames<DayOfWeek>();
         }
 
@@ -45,7 +46,7 @@ namespace budgetHappens
                 newBudget.AmountPerPeriod = decimal.Parse(TextBoxAmount.Text);
                 newBudget.Currency = ListPickerCurrency.SelectedItem.ToString();
 
-                newBudget.PeriodLength = PeriodLength.Weekly;
+                newBudget.PeriodLength = (PeriodLength)Enum.Parse(typeof(PeriodLength), ListPickerLength.SelectedIndex.ToString());
 
                 newBudget.BudgetStartDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), ListPickerStartDay.SelectedIndex.ToString());
                 newBudget.CurrentPeriod = new PeriodModel(newBudget.BudgetStartDay, newBudget.AmountPerPeriod, newBudget.PeriodLength);
@@ -79,6 +80,26 @@ namespace budgetHappens
         private void TextBoxName_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             ValidateNameField();
+        }
+
+        private void ListPickerLength_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PeriodLength periodLength = (PeriodLength)Enum.Parse(typeof(PeriodLength), ListPickerLength.SelectedIndex.ToString());
+            switch (periodLength)
+            {
+                case PeriodLength.Yearly:
+                    TextblockStartDay.Visibility = Visibility.Collapsed;
+                    ListPickerStartDay.Visibility = Visibility.Collapsed;
+                    break;
+                case PeriodLength.Monthly:
+                    TextblockStartDay.Visibility = Visibility.Collapsed;
+                    ListPickerStartDay.Visibility = Visibility.Collapsed;
+                    break;
+                case PeriodLength.Weekly:
+                    TextblockStartDay.Visibility = Visibility.Visible;
+                    ListPickerStartDay.Visibility = Visibility.Visible;
+                    break;
+            }
         }
 
         #endregion
@@ -143,6 +164,8 @@ namespace budgetHappens
             return nameValidates;
         }
         #endregion
+
+        
 
     }
 }
