@@ -57,9 +57,9 @@ namespace budgetHappens
                     TextBoxDescription.Text = _selectedTransaction.Description;
 
                     if(_selectedTransaction.TransactionType == TransactionType.Deposit)
-                        TextBlockTitle.Text = "Edit Deposit";
+                        TextBlockTitle.Text = "EditDeposit";
                     else
-                        TextBlockTitle.Text = "Edit Withdrawal";
+                        TextBlockTitle.Text = "EditWithdrawal";
 
                     btn.Text = "Save";
                     btn.IconUri = new Uri("/Assets/icons/save.png", UriKind.Relative);
@@ -90,7 +90,11 @@ namespace budgetHappens
                     case "Edit":
                         if (_selectedTransaction != null)
                         {
-                            _selectedTransaction.StringAmount = App.CurrentSession.CurrentBudget.Currency + amount.ToString("0.00");
+                            if(_selectedTransaction.TransactionType == TransactionType.Deposit)
+                                _selectedTransaction.StringAmount = String.Format("{0}{1}",App.CurrentSession.CurrentBudget.Currency, amount.ToString("0.00"));
+                            else
+                                _selectedTransaction.StringAmount = String.Format("{0}{1}{2}","-",App.CurrentSession.CurrentBudget.Currency,amount.ToString("0.00"));
+
                             _selectedTransaction.Amount = amount;
                             _selectedTransaction.Description = TextBoxDescription.Text;
                         }
