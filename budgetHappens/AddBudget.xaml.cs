@@ -35,7 +35,7 @@ namespace budgetHappens
 
         #region Event Handlers
 
-        private void ButtonSave_Click_1(object sender, RoutedEventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (ValidateFields())
             {
@@ -160,6 +160,7 @@ namespace budgetHappens
             return nameValidates;
         }
         #endregion
+
 
     }
 }

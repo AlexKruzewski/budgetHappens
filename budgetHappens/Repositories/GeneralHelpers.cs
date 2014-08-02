@@ -163,7 +163,7 @@ namespace budgetHappens.Repositories
 
             var budgetName = new TextBlock();
             budgetName.Text = text[0];
-            budgetName.Margin = new Thickness(75.00, 60.00, 0, 0);
+            budgetName.Margin = new Thickness(10.00, 5, 0, 0);
             budgetName.TextAlignment = TextAlignment.Left;
             budgetName.HorizontalAlignment = HorizontalAlignment.Center;
             budgetName.VerticalAlignment = VerticalAlignment.Center;

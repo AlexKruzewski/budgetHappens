@@ -227,38 +227,25 @@
                     Background="{Binding 
                         Path=LocalizedResources.SecondaryColor, 
                         Source={StaticResource LocalizedStrings}}"/>
-                
-                <Button 
-                    Name="ButtonSave" 
-                    Content="Save" 
-                    Grid.Row="5"
-                    Grid.ColumnSpan="2"
-                    Click="ButtonSave_Click_1"
-                    FontSize="48"
-                    Width="auto"
-                    Margin="20,10,20,0"
-                    Background="{Binding 
-                        Path=LocalizedResources.SecondaryColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    BorderThickness="0"
-                    />
-                <TextBlock
-                    Grid.Row="6"
-                    Grid.ColumnSpan="2"
-                    Padding="10,10,10,10"
-                    Height="auto"
-                    FontSize="30"
-                    Foreground="{Binding 
-                        Path=LocalizedResources.ThirdColor, 
-                        Source={StaticResource LocalizedStrings}}">
-                    <Run Text="*This is the day in the week"/>
-                    <LineBreak/>
-                    <Run Text="that the budget refreshes."/>
-                </TextBlock>
-                    
-
             </Grid>
         </Grid>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar 
+            IsVisible="True" 
+            IsMenuEnabled="True"
+            BackgroundColor="#1f8aa8"
+            x:Name="ApplicationBarCurrent"
+            Mode="Default"
+           >
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonSave"
+                    Text="Save"
+                    IconUri="Assets/icons/save.png"
+                    Click="ButtonSave_Click"
+                    />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>
