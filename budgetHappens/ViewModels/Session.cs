@@ -94,11 +94,13 @@ namespace budgetHappens.ViewModels
                 defaultBudget = (BudgetModel)(from b in Budgets
                                          where b.Default == true
                                          select b).FirstOrDefault();
-
+                //System.Diagnostics.Debug.WriteLine("default budget: " + defaultBudget.Name + " " + defaultBudget.Default.ToString());
                 if (defaultBudget == null)
                 {
+                    System.Diagnostics.Debug.WriteLine("budget is null");
                     defaultBudget = this.Budgets[0];
-                    defaultBudget.Default = (defaultBudget.Default) ? true : false;
+                    defaultBudget.Default = true;
+                    System.Diagnostics.Debug.WriteLine(defaultBudget.Name + " " + defaultBudget.Default.ToString());
 
                     this.SaveSession();
                 }
@@ -135,9 +137,9 @@ namespace budgetHappens.ViewModels
             this.CurrentBudget = selectedBudget;
         }
 
-        internal void DeleteWithdrawal(BudgetModel budgetModel, WithdrawalModel withdrawalModel)
+        internal void DeleteTransaction(BudgetModel budgetModel, TransactionModel withdrawalModel)
         {
-            budgetModel.CurrentPeriod.Withdrawals.Remove(withdrawalModel);
+            budgetModel.CurrentPeriod.Transactions.Remove(withdrawalModel);
         }
 
         #endregion

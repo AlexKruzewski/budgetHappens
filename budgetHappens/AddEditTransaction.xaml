@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="budgetHappens.AddEditWithdrawal"
+    x:Class="budgetHappens.AddEditTransaction"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -43,6 +43,7 @@
                 Grid.Row="0" 
                 Margin="12,17,0,28">
                 <TextBlock 
+                    Name="TextBlockTitle"
                     Text="Withdraw" 
                     Margin="9,-7,0,0" 
                     Style="{StaticResource PhoneTextTitle1Style}"
@@ -126,36 +127,31 @@
                     BorderBrush="{Binding 
                             Path=LocalizedResources.ThirdColor, 
                             Source={StaticResource LocalizedStrings}}"/>
-                <Button 
-                    Name="ButtonAddEditWithdrawal"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Click="ButtonAddEditWithdrawal_Click_1"
-                    Content="Withdraw"
-                    FontSize="48"
-                    Width="auto"
-                    Margin="20,40,20,0"
-                    Background="{Binding 
-                        Path=LocalizedResources.SecondaryColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    BorderThickness="0"
-                    />
-                <Button
-                    Name="ButtonRemoveWithdrawal"
-                    Click="ButtonRemoveWithdrawal_Click_1"
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Content="Delete"
-                    Visibility="Collapsed"
-                    FontSize="48"
-                    Width="auto"
-                    Margin="20,40,20,0"
-                    Background="Crimson"
-                    BorderThickness="0"
-                    />
             </Grid>
         </Grid>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar 
+            IsVisible="True" 
+            IsMenuEnabled="True"
+            BackgroundColor="#1f8aa8"
+            x:Name="ApplicationBarCurrent"
+            Mode="Default"
+           >
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonSave"
+                    Text="widthdraw"
+                    IconUri="Assets/icons/add.png"
+                    Click="ButtonSave_Click"
+                    />
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonRemove"
+                    Text="delete"
+                    IconUri="Assets/icons/delete.png"
+                    Click="ButtonRemove_Click"
+                    />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

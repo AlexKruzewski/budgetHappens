@@ -96,8 +96,8 @@
     <Compile Include="AddBudget.xaml.cs">
       <DependentUpon>AddBudget.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddEditWithdrawal.xaml.cs">
-      <DependentUpon>AddEditWithdrawal.xaml</DependentUpon>
+    <Compile Include="AddEditTransaction.xaml.cs">
+      <DependentUpon>AddEditTransaction.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -121,7 +121,7 @@
     <Compile Include="Models\BudgetModel.cs" />
     <Compile Include="Models\PeriodModel.cs" />
     <Compile Include="ViewModels\Session.cs" />
-    <Compile Include="Models\WithdrawalModel.cs" />
+    <Compile Include="Models\TransactionModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -136,7 +136,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddEditWithdrawal.xaml">
+    <Page Include="AddEditTransaction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,6 +161,11 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\add.png" />
+    <Content Include="Assets\Icons\delete.png" />
+    <Content Include="Assets\Icons\deposit-icon-48.png" />
+    <Content Include="Assets\Icons\save.png" />
+    <Content Include="Assets\Icons\withdraw-icon-48.png" />
     <Content Include="Assets\logo.png" />
     <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -168,6 +173,7 @@
     <Content Include="Assets\Tiles\IconicTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Tiles\logo-med-back.png" />
     <Content Include="Assets\Tiles\logo-med.png" />
     <Content Include="Assets\Tiles\logo-small.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />

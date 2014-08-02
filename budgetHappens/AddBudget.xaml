@@ -230,22 +230,48 @@
                         </DataTemplate>
                     </toolkit:ListPicker.FullModeItemTemplate>
                 </toolkit:ListPicker>
-                <Button 
-                    Name="ButtonSave" 
-                    Content="Save" 
-                    Grid.Row="5"
-                    Grid.ColumnSpan="2"
-                    Click="ButtonSave_Click_1"
-                    FontSize="48"
-                    Width="auto"
-                    Margin="20,40,20,0"
+                <TextBlock
+                    Name="TextBlockDefault"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Text="Default"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="20,18,0,0"
+                    FontSize="32"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"/>
+                <CheckBox
+                    Name="CheckboxDefault"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.PrimaryColor, 
+                        Source={StaticResource LocalizedStrings}}"
                     Background="{Binding 
                         Path=LocalizedResources.SecondaryColor, 
-                        Source={StaticResource LocalizedStrings}}"
-                    BorderThickness="0"
-                    />
+                        Source={StaticResource LocalizedStrings}}"/>
             </Grid>
         </Grid>
     </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar 
+            IsVisible="True" 
+            IsMenuEnabled="True"
+            BackgroundColor="#1f8aa8"
+            x:Name="ApplicationBarCurrent"
+            Mode="Default"
+           >
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonSave"
+                    Text="Save"
+                    IconUri="Assets/icons/save.png"
+                    Click="ButtonSave_Click"
+                    />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

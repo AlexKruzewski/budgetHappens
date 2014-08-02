@@ -21,9 +21,12 @@ namespace budgetHappens.Models
             get
             {
                 decimal tempAmount = PeriodAmount;
-                foreach (var withdrawal in Withdrawals)
+                foreach (var withdrawal in Transactions)
                 {
-                    tempAmount -= withdrawal.Amount;
+                    if(withdrawal.TransactionType == TransactionType.Deposit)
+                        tempAmount += withdrawal.Amount;
+                    else if(withdrawal.TransactionType == TransactionType.Withdrawal)
+                        tempAmount -= withdrawal.Amount;
                 }
                 return tempAmount;
             }
@@ -37,7 +40,7 @@ namespace budgetHappens.Models
             }
         }
 
-        public ObservableCollection<WithdrawalModel> Withdrawals { get; set; }
+        public ObservableCollection<TransactionModel> Transactions { get; set; }
 
         #endregion
 
@@ -70,7 +73,7 @@ namespace budgetHappens.Models
             }
 
             PeriodAmount = periodAmount;
-            Withdrawals = new ObservableCollection<WithdrawalModel>();
+            Transactions = new ObservableCollection<TransactionModel>();
         }
 
         #endregion

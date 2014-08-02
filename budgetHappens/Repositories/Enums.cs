@@ -20,4 +20,10 @@ namespace budgetHappens.Repositories
         Int = 2,
         Date = 3
     }
+
+    public enum TransactionType
+    {
+        Withdrawal = 0,
+        Deposit = 1
+    }
 }

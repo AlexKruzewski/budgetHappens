@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using budgetHappens.Models;
 using budgetHappens.ViewModels;
+using budgetHappens.Repositories;
 
 namespace budgetHappens
 {
@@ -68,7 +69,7 @@ namespace budgetHappens
 
             QuickWithdrawModel selectedModel = list.SelectedItem as QuickWithdrawModel;
 
-            App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals.Add(new WithdrawalModel(selectedModel.Amount, "Quick Withdrawal", App.CurrentSession.CurrentBudget.Currency));
+            App.CurrentSession.CurrentBudget.CurrentPeriod.Transactions.Add(new TransactionModel(selectedModel.Amount, "Quick Withdrawal", App.CurrentSession.CurrentBudget.Currency, TransactionType.Withdrawal));
 
             App.CurrentSession.SaveSession();
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
@@ -77,7 +78,7 @@ namespace budgetHappens
 
         private void ButtonOtherAmount_Click_1(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/AddEditTransaction.xaml?Action=Create", UriKind.Relative));
         }
 
         #endregion

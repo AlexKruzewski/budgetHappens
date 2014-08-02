@@ -65,6 +65,13 @@ namespace budgetHappens
             SetUpCurrentBudget();
             SetupBudgetList();
             SetupWithdrawalList();
+            if(App.CurrentSession.Budgets.Count() > 0)
+            {
+                foreach(var budget in App.CurrentSession.Budgets)
+                {
+                    System.Diagnostics.Debug.WriteLine(budget.Name + " " + budget.Default.ToString());
+                }
+            }
         }
 
         private void AddBudgetButton_Click_1(object sender, EventArgs e)
@@ -96,15 +103,20 @@ namespace budgetHappens
             App.CurrentSession.CurrentBudget = selectedBudget;
         }
 
-        private void ListWithdrawals_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void ListTransactions_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            PhoneApplicationService.Current.State["SelectedWithdrawal"] = (WithdrawalModel)ListWithdrawals.SelectedItem;
-            NavigationService.Navigate(new Uri("/AddEditWithdrawal.xaml?Edit=true", UriKind.Relative));
+            PhoneApplicationService.Current.State["SelectedWithdrawal"] = (TransactionModel)ListTransactions.SelectedItem;
+            NavigationService.Navigate(new Uri("/AddEditTransaction.xaml?Action=Edit", UriKind.Relative));
         }
 
         private void About_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
+        }
+
+        private void AddFundsButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddEditTransaction.xaml?Action=Deposit", UriKind.Relative));
         }
 
         #endregion
@@ -163,8 +175,6 @@ namespace budgetHappens
             StackPanelCurrent.Children.Remove(GridBudgets);
             StackPanelCurrent.Children.Remove(TextBlockCurrentAmount);
             StackPanelCurrent.Children.Remove(TextBlockPeriodAmount);
-            StackPanelCurrent.Children.Remove(ButtonWithdraw);
-
             ApplicationBar.IsVisible = false;
 
             TextBlockNoBudgetSet.Visibility = System.Windows.Visibility.Visible;
@@ -178,13 +188,13 @@ namespace budgetHappens
         {
             if (App.CurrentSession.CurrentBudget != null)
             {
-                var withdrawalList = (from withdrawal in App.CurrentSession.CurrentBudget.CurrentPeriod.Withdrawals
-                                     select withdrawal).OrderByDescending(x=>x.WithdrawalDate).ToList();
+                var withdrawalList = (from withdrawal in App.CurrentSession.CurrentBudget.CurrentPeriod.Transactions
+                                     select withdrawal).OrderByDescending(x=>x.TransactionDate).ToList();
 
-                ListWithdrawals.ItemsSource = withdrawalList;
+                ListTransactions.ItemsSource = withdrawalList;
             }
             else
-                ListWithdrawals.ItemsSource = new List<WithdrawalModel>();
+                ListTransactions.ItemsSource = new List<TransactionModel>();
 
         }
 
@@ -199,6 +209,8 @@ namespace budgetHappens
         }
 
         #endregion
+
+        
 
 
     }

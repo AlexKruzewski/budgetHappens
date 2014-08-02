@@ -9,6 +9,7 @@ using Microsoft.Phone.Shell;
 using budgetHappens.Resources;
 using budgetHappens.ViewModels;
 using budgetHappens.Models;
+using budgetHappens.Repositories;
 
 namespace budgetHappens
 {
@@ -95,6 +96,7 @@ namespace budgetHappens
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             CurrentSession.SaveSession();
+            GeneralHelpers.UpdateLiveTile(CurrentSession.GetDefaultOrNextBudget());
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -102,6 +104,7 @@ namespace budgetHappens
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             CurrentSession.SaveSession();
+            GeneralHelpers.UpdateLiveTile(CurrentSession.GetDefaultOrNextBudget());
         }
 
         // Code to execute if a navigation fails

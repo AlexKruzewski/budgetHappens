@@ -1,4 +1,5 @@
-﻿using System;
+﻿using budgetHappens.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace budgetHappens.Models
 {
-    public class WithdrawalModel
+    public class TransactionModel
     {
         #region Parameters
 
         public decimal Amount { get; set; }
         public string StringAmount { get; set; }
-        public DateTime WithdrawalDate { get; set; }
+        public DateTime TransactionDate { get; set; }
         public string Description { get; set; }
+        public TransactionType TransactionType { get; set;}
 
         #endregion
 
@@ -27,12 +29,21 @@ namespace budgetHappens.Models
         /// <param name="amount">Amount of the withdrawal</param>
         /// <param name="description">Description of the withdrawal</param>
         /// <param name="currencySymbol">Currency symbol used (for display)</param>
-        public WithdrawalModel(decimal amount, string description, string currencySymbol)
+        public TransactionModel(decimal amount, string description, string currencySymbol, TransactionType transactionType)
         {
             this.Amount = amount;
-            this.StringAmount = currencySymbol + amount.ToString("0.00");
+            switch(transactionType)
+            {
+                case TransactionType.Deposit:
+                    this.StringAmount = String.Format("{0}{1}",currencySymbol, amount.ToString("0.00"));
+                    break;
+                case TransactionType.Withdrawal:
+                    this.StringAmount = String.Format("-{0}{1}",currencySymbol, amount.ToString("0.00"));
+                    break;
+            }
             this.Description = description;
-            this.WithdrawalDate = DateTime.Now;
+            this.TransactionDate = DateTime.Now;
+            this.TransactionType = transactionType;
         }
         #endregion
 

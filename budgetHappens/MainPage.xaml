@@ -138,18 +138,7 @@
                             Path=LocalizedResources.ThirdColor, 
                             Source={StaticResource LocalizedStrings}}"
                         TextAlignment="Center"/>
-                    <Button
-                        Name="ButtonWithdraw"
-                        Content="Withdraw"
-                        Click="AddWithdrawalButton_Click"
-                        FontSize="48"
-                        Width="auto"
-                        Margin="20,40,20,0"
-                        Background="{Binding 
-                            Path=LocalizedResources.SecondaryColor, 
-                            Source={StaticResource LocalizedStrings}}"
-                        BorderThickness="0"
-                        />
+
                 </StackPanel>
 
                 <!--Double line list with text wrapping-->
@@ -160,9 +149,9 @@
             <phone:PivotItem Header="History">
                 <!--Double line list no text wrapping-->
                 <phone:LongListSelector 
-                    Name="ListWithdrawals" 
+                    Name="ListTransactions" 
                     Margin="0,0,-12,0"
-                    SelectionChanged="ListWithdrawals_SelectionChanged_1">
+                    SelectionChanged="ListTransactions_SelectionChanged_1">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <Grid
@@ -203,7 +192,7 @@
                                         Style="{StaticResource PhoneTextSubtleStyle}"/>
                                     <TextBlock
                                         Grid.Row="1"
-                                        Text="{Binding WithdrawalDate}" 
+                                        Text="{Binding TransactionDate}" 
                                         TextWrapping="NoWrap" 
                                         Foreground="{Binding 
                                             Path=LocalizedResources.ThirdColor, 
@@ -233,9 +222,20 @@
             IsMenuEnabled="True"
             BackgroundColor="#1f8aa8"
             x:Name="ApplicationBarCurrent"
-            Mode="Minimized"
+            Mode="Default"
            >
-
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonQuickWithdraw"
+                    Text="Withdraw"
+                    IconUri="Assets/icons/withdraw-icon-48.png"
+                    Click="AddWithdrawalButton_Click"
+                    />
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonAddFunds"
+                    Text="Add funds"
+                    IconUri="Assets/icons/deposit-icon-48.png"
+                    Click="AddFundsButton_Click"
+                    />
             <shell:ApplicationBar.MenuItems>
 
                 <shell:ApplicationBarMenuItem 

@@ -85,6 +85,15 @@
                         Path=LocalizedResources.ThirdColor, 
                         Source={StaticResource LocalizedStrings}}"
                     />
+                <TextBlock
+                    Grid.Row="3"
+                    Text="App bar Icons: Designed by hunotika"
+                    Margin="0,0,0,20"
+                    FontSize="28"
+                    Foreground="{Binding 
+                        Path=LocalizedResources.ThirdColor, 
+                        Source={StaticResource LocalizedStrings}}"
+                    />
                     
             </Grid>
         </Grid>
