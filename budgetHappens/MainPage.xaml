@@ -243,8 +243,9 @@
                     Click="AddBudgetButton_Click_1"/>
 
                 <shell:ApplicationBarMenuItem 
-                    Text="Delete Current Budget"
-                    Click="DeleteCurrentBudget_Click"/>
+                    Text="Edit Current Budget"
+                    Click="EditBudgetMenuItem_Click"/>
+                
                 <shell:ApplicationBarMenuItem 
                     Text="about"
                     Click="About_Click"/>

@@ -93,8 +93,8 @@
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddBudget.xaml.cs">
-      <DependentUpon>AddBudget.xaml</DependentUpon>
+    <Compile Include="AddEditBudget.xaml.cs">
+      <DependentUpon>AddEditBudget.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddEditTransaction.xaml.cs">
       <DependentUpon>AddEditTransaction.xaml</DependentUpon>
@@ -132,7 +132,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddBudget.xaml">
+    <Page Include="AddEditBudget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

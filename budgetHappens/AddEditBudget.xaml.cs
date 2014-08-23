@@ -13,17 +13,19 @@ using budgetHappens.Models;
 using System.Windows.Media;
 namespace budgetHappens
 {
-    public partial class AddBudget : PhoneApplicationPage
+    public partial class AddEditBudget : PhoneApplicationPage
     {
         #region Parameters
         #endregion
 
         #region Attributes
+        BudgetModel _currentBudget = null;
+        private string _action = "";
         #endregion
 
         #region Constructors
 
-        public AddBudget()
+        public AddEditBudget()
         {
             InitializeComponent();
 
@@ -36,41 +38,70 @@ namespace budgetHappens
 
         #region Event Handlers
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var gotQuery = NavigationContext.QueryString.TryGetValue("Action", out _action);
+            ApplicationBarIconButton btn = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+
+            switch (_action)
+            {
+                case "Edit":
+                    _currentBudget = App.CurrentSession.CurrentBudget;
+
+                    TextBlockTitle.Text = "EditBudget";
+
+                    TextBoxName.Text = _currentBudget.Name;
+                    TextBoxAmount.Text = _currentBudget.AmountPerPeriod.ToString();
+                    ListPickerCurrency.SelectedItem = _currentBudget.Currency;
+                    ListPickerLength.SelectedItem = _currentBudget.PeriodLength.ToString();
+                    ListPickerStartDay.SelectedItem = _currentBudget.BudgetStartDay.ToString();
+                    CheckboxDefault.IsChecked = _currentBudget.Default;
+                    break;
+                case "Create":
+                    ApplicationBar.Buttons.RemoveAt(1);
+                    break;
+                default:
+                    ApplicationBar.Buttons.RemoveAt(1);
+                    break;
+            }
+
+        }
+
         private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (ValidateFields())
             {
-                BudgetModel newBudget = new BudgetModel();
+                if(_currentBudget == null)
+                    _currentBudget = new BudgetModel();
 
-                newBudget.Name = TextBoxName.Text;
-                newBudget.AmountPerPeriod = decimal.Parse(TextBoxAmount.Text);
-                newBudget.Currency = ListPickerCurrency.SelectedItem.ToString();
+                _currentBudget.Name = TextBoxName.Text;
+                _currentBudget.AmountPerPeriod = decimal.Parse(TextBoxAmount.Text);
+                _currentBudget.Currency = ListPickerCurrency.SelectedItem.ToString();
 
-                newBudget.PeriodLength = (PeriodLength)Enum.Parse(typeof(PeriodLength), ListPickerLength.SelectedIndex.ToString());
+                _currentBudget.PeriodLength = (PeriodLength)Enum.Parse(typeof(PeriodLength), ListPickerLength.SelectedIndex.ToString());
 
-                newBudget.BudgetStartDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), ListPickerStartDay.SelectedIndex.ToString());
-                newBudget.CurrentPeriod = new PeriodModel(newBudget.BudgetStartDay, newBudget.AmountPerPeriod, newBudget.PeriodLength);
-                System.Diagnostics.Debug.WriteLine(CheckboxDefault.IsChecked.ToString());
+                _currentBudget.BudgetStartDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), ListPickerStartDay.SelectedIndex.ToString());
+                _currentBudget.CurrentPeriod = new PeriodModel(_currentBudget.BudgetStartDay, _currentBudget.AmountPerPeriod, _currentBudget.PeriodLength);
+
                 //If the current budget is set as default we want to find the previous default budget and clear it default status.
                 if (App.CurrentSession.Budgets.Count() == 0 | CheckboxDefault.IsChecked == true)
                 {
-                    System.Diagnostics.Debug.WriteLine("in here");
                     if (App.CurrentSession.Budgets.Count() > 0) 
                     {
                         BudgetModel tempBudget = App.CurrentSession.GetDefaultOrNextBudget();
-                        System.Diagnostics.Debug.WriteLine(tempBudget.Default.ToString());
                         tempBudget.Default = false;
                     }
-                   
-                    newBudget.Default = true;
+
+                    _currentBudget.Default = true;
                 }
                 else
                 {
-                    newBudget.Default = false;
+                    _currentBudget.Default = false;
                 }
 
-                App.CurrentSession.Budgets.Add(newBudget);
-                App.CurrentSession.CurrentBudget = newBudget;
+                if (_action == "Create")
+                    App.CurrentSession.Budgets.Add(_currentBudget);
+                App.CurrentSession.CurrentBudget = _currentBudget;
 
                 App.CurrentSession.SaveSession();
 
@@ -123,6 +154,14 @@ namespace budgetHappens
                     CheckboxDefault.SetValue(Grid.RowProperty, 5);
                     break;
             }
+        }
+
+        private void ButtonRemove_Click(object sender, EventArgs e)
+        {
+            App.CurrentSession.DeleteBudget(_currentBudget);
+            App.CurrentSession.SaveSession();
+
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
         #endregion
@@ -187,6 +226,8 @@ namespace budgetHappens
             return nameValidates;
         }
         #endregion
+
+        
 
         
 

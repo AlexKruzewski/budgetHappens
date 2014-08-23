@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="budgetHappens.AddBudget"
+    x:Class="budgetHappens.AddEditBudget"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
@@ -42,6 +42,7 @@
                 Grid.Row="0" 
                 Margin="12,17,0,28">
                 <TextBlock 
+                    Name="TextBlockTitle"
                     Text="AddBudget" 
                     Margin="9,-7,0,0" 
                     Style="{StaticResource PhoneTextTitle1Style}"
@@ -270,6 +271,12 @@
                     Text="Save"
                     IconUri="Assets/icons/save.png"
                     Click="ButtonSave_Click"
+                    />
+            <shell:ApplicationBarIconButton 
+                    x:Name="ButtonRemove"
+                    Text="delete"
+                    IconUri="Assets/icons/delete.png"
+                    Click="ButtonRemove_Click"
                     />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

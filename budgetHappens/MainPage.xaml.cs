@@ -76,25 +76,12 @@ namespace budgetHappens
 
         private void AddBudgetButton_Click_1(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AddBudget.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/AddEditBudget.xaml?Action=Create", UriKind.Relative));
         }
 
         private void AddWithdrawalButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AddQuickWithdraw.xaml", UriKind.Relative));
-        }
-
-        private void DeleteCurrentBudget_Click(object sender, EventArgs e)
-        {
-            App.CurrentSession.DeleteBudget(App.CurrentSession.CurrentBudget);
-            App.CurrentSession.SaveSession();
-            App.CurrentSession.CurrentBudget = App.CurrentSession.GetDefaultOrNextBudget();
-
-            if(App.CurrentSession.CurrentBudget == null)
-                SetUpCurrentBudget();
-
-            SetupBudgetList();
-            SetupWithdrawalList();
         }
 
         private void ListPickerBudgets_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -117,6 +104,11 @@ namespace budgetHappens
         private void AddFundsButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/AddEditTransaction.xaml?Action=Deposit", UriKind.Relative));
+        }
+
+        private void EditBudgetMenuItem_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddEditBudget.xaml?Action=Edit", UriKind.Relative));
         }
 
         #endregion
@@ -209,9 +201,6 @@ namespace budgetHappens
         }
 
         #endregion
-
-        
-
 
     }
 }
