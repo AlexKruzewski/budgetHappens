@@ -66,8 +66,8 @@ namespace budgetHappens
                     PhoneApplicationService.Current.State["SelectedWithdrawal"] = null;
                     break;
                 case "Deposit":
-                    TextBlockTitle.Text = "Add Funds";
-                    btn.Text = "Add Funds";
+                    TextBlockTitle.Text = "AddFunds";
+                    btn.Text = "AddFunds";
                     ApplicationBar.Buttons.RemoveAt(1);
                     break;
                 default:
