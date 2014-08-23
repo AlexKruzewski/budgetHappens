@@ -120,21 +120,51 @@ namespace budgetHappens.Repositories
 
             if (oTile != null)
             {
-                StandardTileData oFliptile = new StandardTileData();
-                oFliptile.Title = "Budget Happens";
-                oFliptile.BackTitle = "Budget Happens";
-                oFliptile.BackContent = "";
-                
-                string[] stringArray = new string[3];
-                stringArray[0] = string.Format("{0}", budget.Name);
-                stringArray[1] = string.Format("{0}{1}", budget.Currency, budget.CurrentPeriod.CurrentAmount.ToString("0.00"));
-                stringArray[2] = string.Format("{0} days left", budget.CurrentPeriod.DaysLeft.ToString("0"));
+                FlipTileData oFliptile = new FlipTileData();
+                if (budget != null)
+                {
+                    oFliptile.Title = "Budget Happens";
+                    oFliptile.BackgroundImage = new Uri("Assets/Tiles/logo-med.png", UriKind.Relative);
+                    oFliptile.BackTitle = "Budget Happens";
+                    oFliptile.BackContent = "";
 
-                RenderText(stringArray, 336, 336, 64, "BackBackgroundImage");
-                oFliptile.BackgroundImage = new Uri("Assets/Tiles/logo-med.png", UriKind.Relative);
-                oFliptile.BackBackgroundImage = new Uri(@"isostore:/Shared/ShellContent/BackBackgroundImage.jpg", UriKind.Absolute);
+                    string[] stringArray = new string[3];
+                    stringArray[0] = string.Format("{0}", budget.Name);
+                    stringArray[1] = string.Format("{0}{1}", budget.Currency, budget.CurrentPeriod.CurrentAmount.ToString("0.00"));
+                    stringArray[2] = string.Format("{0} days left", budget.CurrentPeriod.DaysLeft.ToString("0"));
+
+                    RenderText(stringArray, 336, 336, 64, "BackBackgroundImage");
+                    oFliptile.BackBackgroundImage = new Uri(@"isostore:/Shared/ShellContent/BackBackgroundImage.jpg", UriKind.Absolute);
+                }
+                else
+                    oFliptile = ClearFlipTileBack();
+
                 oTile.Update(oFliptile);
             }
+        }
+
+        /// <summary>
+        /// Clears the data in the back of the flip tile to stop it
+        /// from flipping and showing invalid data.
+        /// </summary>
+        /// <returns>FlipTileData</returns>
+        private static FlipTileData ClearFlipTileBack()
+        {
+            var clearTileBackXml = new StringBuilder();
+
+            clearTileBackXml.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            clearTileBackXml.Append("<wp:notification xmlns:wp=\"WPNotification\" version=\"2.0\">");
+            clearTileBackXml.Append("<wp:tile template=\"FlipTile\">");
+            clearTileBackXml.Append("<wp:WideBackBackgroundImage action=\"Clear\"></wp:WideBackBackgroundImage>");
+            clearTileBackXml.Append("<wp:WideBackContent action=\"Clear\"></wp:WideBackContent>");
+            clearTileBackXml.Append("<wp:BackBackgroundImage action=\"Clear\"></wp:BackBackgroundImage>");
+            clearTileBackXml.Append("<wp:BackContent action=\"Clear\"></wp:BackContent>");
+            clearTileBackXml.Append("<wp:BackTitle action=\"Clear\"></wp:BackTitle>");
+            clearTileBackXml.Append("</wp:tile>");
+            clearTileBackXml.Append("</wp:notification>");
+           
+            return new FlipTileData(clearTileBackXml.ToString());
+
         }
 
         /// <summary>
