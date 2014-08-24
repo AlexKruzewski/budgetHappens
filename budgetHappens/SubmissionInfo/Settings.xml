@@ -1,5 +1,5 @@
 <MarketplaceDetails>
-  <SmallAppTile>logo-med.png</SmallAppTile>
+  <SmallAppTile>logo-300.png</SmallAppTile>
   <ScreenShots>screenshot-480-800-1.png;screenshot-480-800-2.png;screenshot-480-800-3.png;screenshot-480-800-4.png;screenshot-480-800-5.png;screenshot-480-800-6.png;;;</ScreenShots>
   <ScreenShotsWXGA>screenshot-768-1280-1.png;screenshot-768-1280-2.png;screenshot-768-1280-3.png;screenshot-768-1280-4.png;screenshot-768-1280-5.png;screenshot-768-1280-6.png;;;</ScreenShotsWXGA>
   <ScreenShots720P>screenshot-720-1280-1.png;screenshot-720-1280-2.png;screenshot-720-1280-3.png;screenshot-720-1280-4.png;screenshot-720-1280-5.png;screenshot-720-1280-6.png;;;</ScreenShots720P>
